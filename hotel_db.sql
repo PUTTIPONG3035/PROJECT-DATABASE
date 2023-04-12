@@ -3,7 +3,7 @@ CREATE TABLE `employees`(
     `emp_id` INT NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(30) NOT NULL,
     `last_name` VARCHAR(30) NOT NULL,
-    `tel` INT NOT NULL,
+    `tel` VARCHAR(12) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `password` VARCHAR(10) NOT NULL,
      PRIMARY KEY(`emp_id`)
@@ -14,7 +14,7 @@ CREATE TABLE `customers`(
     `customer_id` INT NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(30) NOT NULL,
     `last_name` VARCHAR(30) NOT NULL,
-    `tel` INT NOT NULL,
+    `tel` VARCHAR(12) NOT NULL,
     `email` VARCHAR(100) NOT NULL,
     `password` VARCHAR(10) NOT NULL,
      PRIMARY KEY(`customer_id`)
