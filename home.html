@@ -1,0 +1,257 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <style>
+        @font-face {
+            font-family: "Queensides";
+            src: url(Queensides-3z7Ey.ttf) format("truetype");
+        }
+
+        body {
+            font-family: "Queensides", sans-serif
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- nav -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation"
+        style="position: fixed; top: 0; width: 100%">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="http://localhost:8080/">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" v-if="logins == true" href="search.html">
+                    ค้นหาห้องพัก
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <i class="fa fa-bell"></i>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="index.html#01"> Standard Room </a>
+                        <a class="navbar-item" href="index.html#02"> Deluxe Room </a>
+                        <a class="navbar-item" href="index.html#03"> Suite Room </a>
+                        <a class="navbar-item" href="index.html#04"> Superior Room </a>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons asd">
+                        <a class="button is-info" v-if="logins == false" @click="isActive_Sign_up = true">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-dark" v-if="logins == true" href="profile.html">
+                            <strong>My Profile</strong>
+                        </a>
+                        <a class="button is-dark" v-if="logins == false" @click="isActive_Sign_in = true">
+                            Log in
+                        </a>
+                        <a class="button is-danger" v-if="logins == true" @click="logins = false">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <br><br><br><br><br><br><br>
+    <div class="container">
+        <div class="card p-6">
+            <div class="columns">
+                <div class="column is-4">
+                    <div class="subtitle is-4">
+                        begin :
+                    </div>
+                    <div class="">
+                        <input type="date" class="input">
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="subtitle is-4">
+                        end :
+                    </div>
+                    <div class="">
+                        <input type="date" class="input">
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="subtitle is-4">
+                        people
+                    </div>
+                    <div class="">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        <i class="fa fa-plus"></i>asdf
+                        <!-- <select name="people" id="people" class="input">
+                            <option value="1"> 1 Adult</option>
+                        </select> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+<br>
+        <div class="columns is-centered">
+            <!-- <div class="column is-3"> -->
+            <div class="column is-3 card  m-2">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">Room Name</p>
+                            <p class="subtitle is-6">
+                                ดาว
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        รายละเอียดห้อง
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Phasellus nec iaculis mauris
+                        <p class="title has-text-danger mt-2">
+                            THB 500 -.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">เพิ่มเติม</a>
+                        <a href="#" class="card-footer-item">จองเลย</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column is-3 card m-2">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">Room Name</p>
+                            <p class="subtitle is-6">
+                                ดาว
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        รายละเอียดห้อง
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Phasellus nec iaculis mauris
+                        <p class="title has-text-danger mt-2">
+                            THB 500 -.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">เพิ่มเติม</a>
+                        <a href="#" class="card-footer-item">จองเลย</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column is-3 card  m-2">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">Room Name</p>
+                            <p class="subtitle is-6">
+                                ดาว
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        รายละเอียดห้อง
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Phasellus nec iaculis mauris
+                        <p class="title has-text-danger mt-2">
+                            THB 500 -.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">เพิ่มเติม</a>
+                        <a href="#" class="card-footer-item">จองเลย</a>
+                    </footer>
+                </div>
+            </div>
+            <div class="column is-3 card  m-2">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-content">
+                            <p class="title is-4">Room Name</p>
+                            <p class="subtitle is-6">
+                                ดาว
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(244, 247, 76)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                                <fa icon="star" class="mt-3" style="font-size:40px ;color:rgb(188, 188, 165)"></fa>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="content">
+                        รายละเอียดห้อง
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Phasellus nec iaculis mauris
+                        <p class="title has-text-danger mt-2">
+                            THB 500 -.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="#" class="card-footer-item">เพิ่มเติม</a>
+                        <a href="#" class="card-footer-item">จองเลย</a>
+                    </footer>
+                </div>
+            </div>
+            <!-- </div> -->
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
