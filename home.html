@@ -76,74 +76,100 @@
     <div class="container">
         <p class="title has-text-light has-text-centered">
             HOTEL's INFORMATION
-            <p class="subtitle has-text-light has-text-centered">
+        <p class="subtitle has-text-light has-text-centered">
             Get information, booking and management system
 
-            </p>
         </p>
+        </p>
+        <!-- from -->
         <div class="card p-6">
             <div class="columns">
-                <div class="column is-4">
-                    <div class="subtitle is-4">
-                        begin :
-                    </div>
-                    <div class="">
-                        <input type="date" class="input">
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="subtitle is-4">
-                        end :
-                    </div>
-                    <div class="">
-                        <input type="date" class="input">
+                <div class="column is-three">
+                    <label for="">Check in</label>
+                    <div>
+                        <input type="date" class="input is-small" style="width: 230px; margin-top: 10px;"
+                            v-model="checkIn">
                     </div>
                 </div>
-                <div class="column is-4">
-                    <div class="subtitle is-4">
-                        people
+                <div class="column">
+                    <label for="">Check out</label>
+                    <div>
+                        <input type="date" class="input is-small" style="width: 230px; margin-top: 10px"
+                            v-model="checkOut">
                     </div>
-                    <div class="">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <i class="fa fa-plus"></i>asdf
-                        <!-- <select name="people" id="people" class="input">
-                            <option value="1"> 1 Adult</option>
-                        </select> -->
+                </div>
+
+                <div class="column">
+                    <label for="">People</label>
+                    <div>
+                        <div class="select is-small" style="margin-top: 10px;">
+                            <select style="width: 230px;  " v-model="people">
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
             </div>
             <div class="columns">
-                <div class="column is-4">
-                    <div class="subtitle is-4">
-                        begin :
-                    </div>
-                    <div class="">
-                        <input type="date" class="input">
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="subtitle is-4">
-                        end :
-                    </div>
-                    <div class="">
-                        <input type="date" class="input">
+                <div class="column is-three">
+                    <label for="">Rooms</label>
+                    <div>
+                        <div class="select is-small" style="margin-top: 10px;">
+                            <select style="width: 230px;" v-model="room">
+                                <option value="1">1 room</option>
+                                <option value="2">2 rooms</option>
+                                <option value="3">3 rooms</option>
+                                <option value="4">4 rooms</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="column is-4">
-                    <div class="subtitle is-4">
-                        people
+                <div class="column">
+                    <label for="">Type room</label>
+                    <div>
+                        <div class="select is-small" style="margin-top: 10px;">
+                            <select style="width: 230px;  " v-model="checkType">
+                                <option v-for="item in allRoom">{{ item.room_type }}</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <i class="fa fa-plus"></i>asdf
-                        <!-- <select name="people" id="people" class="input">
-                            <option value="1"> 1 Adult</option>
-                        </select> -->
+                </div>
+                <div class="column">
+                    <label for="">Price</label>
+                    <div v-model="price" class="mt-3">
+                        {{ price + " x " + room + " = " + price*room}}
                     </div>
                 </div>
 
             </div>
+            <div class="columns">
+                <div class="column is-three">
+                    <label for="">First Name</label>
+                    <div>
+                        <input type="text" class="input is-small" style="margin-top: 10px; width:230px;"
+                            placeholder="Puttonpong" v-model="fname">
+                    </div>
+                </div>
+                <div class="column">
+                    <label for="">Last Name</label>
+                    <div>
+                        <input type="text" class="input is-small" style="margin-top: 10px; width:230px;"
+                            placeholder="Panich" v-model="lname">
+                    </div>
+                </div>
+
+                <div class="column">
+                    <br>
+                    <a href="/booking/invoice" class="button has-background-danger is-normal is-rounded"
+                        @click="confirm_booking()">Next</a>
+                </div>
+
+            </div>
+
         </div>
         <br>
         <div class="columns is-centered">
@@ -284,12 +310,10 @@
                     </footer>
                 </div>
             </div>
-            <!-- </div> -->
-
-
         </div>
     </div>
 
+    
 
 </body>
 

@@ -1,0 +1,139 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <style>
+        @font-face {
+            font-family: "Queensides";
+            src: url(Queensides-3z7Ey.ttf) format("truetype");
+        }
+
+        body {
+            font-family: "Queensides", sans-serif
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- nav -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation"
+        style="position: fixed; top: 0; width: 100%">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="http://localhost:8080/">
+                <i class="fas fa-home"></i>
+                Home
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" v-if="logins == true" href="search.html">
+                    ค้นหาห้องพัก
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <i class="fa fa-bell"></i>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="index.html#01"> Standard Room </a>
+                        <a class="navbar-item" href="index.html#02"> Deluxe Room </a>
+                        <a class="navbar-item" href="index.html#03"> Suite Room </a>
+                        <a class="navbar-item" href="index.html#04"> Superior Room </a>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons asd">
+                        <a class="button is-info" v-if="logins == false" @click="isActive_Sign_up = true">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-dark" v-if="logins == true" href="profile.html">
+                            <strong>My Profile</strong>
+                        </a>
+                        <a class="button is-dark" v-if="logins == false" @click="isActive_Sign_in = true">
+                            Log in
+                        </a>
+                        <a class="button is-danger" v-if="logins == true" @click="logins = false">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-6">
+        <img src="" alt="pic1">
+        <img src="" alt="pic1">
+        <img src="" alt="pic1">
+        <img src="" alt="pic1">
+    </div>
+
+
+    <div class="container">
+        <p class="subtitle">Comments</p>
+        <div class="box">
+            <article class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                        </p>
+                        <p class="is-size-7"></p>
+                    </div>
+                    <nav class="level is-mobile">
+                        <div class="level-left">
+                            <a class="level-item" aria-label="like">
+                                <span class="icon is-small">
+                                    <i class="fas fa-heart" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </article>
+        </div>
+        <form method="POST">
+            <div class="columns box">
+                <div class="column is-7">
+                    <input class="input" type="text" name="comment" placeholder="Comment here..." value="">
+                </div>
+                <div class="column is-3">
+                    <div class="file">
+                        <label class="file-label">
+                            <input class="file-input" type="file" name="comment_image">
+                            <span class="file-cta">
+                                <span class="file-icon">
+                                    <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                    Choose an image…
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <input class="button is-primary" type="submit" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+
+
+</body>
+
+</html>
