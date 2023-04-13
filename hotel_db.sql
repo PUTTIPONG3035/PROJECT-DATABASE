@@ -21,7 +21,7 @@ CREATE TABLE `customers`(
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `report`(
-    `report_id` VARCHAR(10) NOT NULL AUTO_INCREMENT,
+    `report_id` VARCHAR(10) NOT NULL,
     `customer_id` INT NOT NULL,
     `employee_id` INT NOT NULL,
     `report_title` VARCHAR(30) NOT NULL,
