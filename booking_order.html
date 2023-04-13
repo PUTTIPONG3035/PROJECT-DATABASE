@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Appvilla - Creative Landing Page HTML Template.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .container {
+            margin-top: 100px;
+        }
+
+        nav {
+            font-size: larger;
+            padding: 10px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <nav>
+        <a href="admin.html" style="color:#fff">HOME</a>
+    </nav>
+
+
+    <div class="container">
+
+        <div id="orders" class="content-tab">
+            <table class="table has-text-centered" align="center">
+                <tr class="has-background-info-light">
+                    <td>booking id</td>
+                    <td>customer id</td>
+                    <td>name</td>
+                    <td>room id</td>
+                    <td>check in</td>
+                    <td>check out</td>
+                    <td>price</td>
+                    <td>booking date</td>
+                    <td>payment id</td>
+                    <td> </td>
+                </tr>
+                <tbody class="has-background-light subtitle" v-for="(item, index) in history" :key="item">
+                    <tr>
+                        <td>B001234</td>
+                        <td>100</td>
+                        <td>Stefen</td>
+                        <td>r009</td>
+                        <td>16-10-2022</td>
+                        <td>18-10-2022</td>
+                        <td>1700</td>
+                        <td>10-10-2022</td>
+                        <td>p564</td>
+                        <td> <button style="border-radius: 5px;"> cancel </button></td>
+                    </tr>
+                    <tr>
+                        <td>B001234</td>
+                        <td>100</td>
+                        <td>Stefen</td>
+                        <td>r009</td>
+                        <td>16-10-2022</td>
+                        <td>18-10-2022</td>
+                        <td>1700</td>
+                        <td>10-10-2022</td>
+                        <td>p564</td>
+                        <td> <button style="border-radius: 5px;"> cancel </button></td>
+                    </tr>
+                    <tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/count-up.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+
+        //====== counter up
+        var cu = new counterUp({
+            start: 0,
+            duration: 2000,
+            intvalues: true,
+            interval: 100,
+            append: " ",
+        });
+        cu.start();
+    </script>
+</body>
+
+</html>
