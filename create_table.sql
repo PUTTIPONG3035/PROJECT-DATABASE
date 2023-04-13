@@ -1,4 +1,4 @@
-CREATE TABLE `employee`(
+CREATE TABLE `employees`(
     `emp_id` INT NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(30) NOT NULL,
     `last_name` VARCHAR(30) NOT NULL,
@@ -27,11 +27,11 @@ CREATE TABLE `report`(
     `report_description` VARCHAR(255) NOT NULL,
     PRIMARY KEY(`report_id`),
     FOREIGN KEY(`customer_id`) REFERENCES `customers`(`customer_id`),
-    FOREIGN KEY(`employee_id`) REFERENCES `employee`(`emp_id`)
+    FOREIGN KEY(`employee_id`) REFERENCES `employees`(`emp_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `payments`(
-    `payment_id` INT NOT NULL AUTO_INCREMENT,
+    `payment_id` VARCHAR(4) NOT NULL,
     `via` VARCHAR(255) NOT NULL,
     `payment_state` VARCHAR(255)  NOT NULL,
     `price` INT NOT NULL,
@@ -53,26 +53,26 @@ CREATE TABLE `room`(
 CREATE TABLE `booking`(
     `booking_id` VARCHAR(7) NOT NULL,
     `customer_id` INT NOT NULL,
-    `room_id` INT NOT NULL,
-    `name` INT NOT NULL,
-    `quantity` INT NOT NULL,
-
+    `name` VARCHAR(255) NOT NULL,
+    `room_id` VARCHAR(4) NOT NULL,
     `check_in` DATE NOT NULL,
     `check_out` DATE NOT NULL,
-    `payment_id` INT NOT NULL,
+    `price` INT NOT NULL,
+    `payment_id` VARCHAR(4) NOT NULL,
     `booking_date` DATETIME NOT NULL,
     PRIMARY KEY(`booking_id`),
     FOREIGN KEY(`customer_id`)REFERENCES `customers`(`customer_id`),
     FOREIGN KEY(`payment_id`) REFERENCES `payments`(`payment_id`),
     FOREIGN KEY(`room_id`) REFERENCES `room`(`room_id`)
-);
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 
 
 CREATE TABLE `unavilable_room`(
-    `room_id` VARTCHAR(4) NOT NULL,
+    `room_id` VARCHAR(4) NOT NULL,
+    `room_type` VARCHAR(255) NOT NULL,
     `date` DATE NOT NULL,
-    `quantity` INT NOT NULL,
+    `room_avilable` VARCHAR(10) NOT NULL,
     PRIMARY KEY (`room_id`, `date`),
-      FOREIGN KEY(`room_id`) REFERENCES `room`(`room_id`)
-);
+    FOREIGN KEY(`room_id`) REFERENCES `room`(`room_id`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
