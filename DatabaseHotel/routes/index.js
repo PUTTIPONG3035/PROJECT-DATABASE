@@ -5,7 +5,8 @@ router = express.Router();
 
 router.get("/", async function (req, res, next) {
   const [rows, feilds] = await pool.query('SELECT * FROM room')
-  res.render('index', {rooms : JSON.stringify(rows)})
+  const [reports, feilds2] = await pool.query("select * from report")
+  res.render('index', {rooms : JSON.stringify(rows), reports: JSON.stringify(reports)})
 });
 
 router.get("/login", async function (req, res, next) {

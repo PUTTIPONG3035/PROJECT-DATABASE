@@ -62,12 +62,23 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
                                     <li class="nav-item">
-                                        <a href="#allroom" class="page-scroll"
-                                            aria-label="Toggle navigation">All Room</a>
+                                        <a href="#allroom" class="page-scroll" aria-label="Toggle navigation">All
+                                            Room</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="booking_order.html"
-                                            aria-label="Toggle navigation">Booking Orders</a>
+                                        <a href="booking_order.html" aria-label="Toggle navigation">Booking Orders</a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
+                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
+                                            aria-expanded="false" aria-label="Toggle navigation">report</a>
+                                        <ul class="sub-menu collapse" id="submenu-1-4">
+                                            <!-- loop report table -->
+                                            <li class="nav-item" v-for="report in reports"><a
+                                                    href="javascript:void(0)">{{ report.report_description }}</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
@@ -96,7 +107,8 @@
                 </div>
                 <div class="col-lg-7 col-md-12 col-12">
                     <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o=" alt="#">
+                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o="
+                            alt="#">
                     </div>
                 </div>
             </div>
