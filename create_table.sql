@@ -68,11 +68,10 @@ CREATE TABLE `booking`(
 
 
 
-CREATE TABLE `unavilable_room`(
+CREATE TABLE `unavailable_room`(
     `room_id` VARCHAR(4) NOT NULL,
     `room_type` VARCHAR(255) NOT NULL,
     `date` DATE NOT NULL,
-    `room_avilable` VARCHAR(10) NOT NULL,
     PRIMARY KEY (`room_id`, `date`),
     FOREIGN KEY(`room_id`) REFERENCES `room`(`room_id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
