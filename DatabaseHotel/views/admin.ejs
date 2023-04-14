@@ -17,10 +17,11 @@
     <link rel="stylesheet" href="/css/glightbox.min.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 </head>
 
-<body>
+<body id="admin">
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -73,10 +74,10 @@
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">report</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
+                                        <ul class="sub-menu collapse" id="submenu-1-4" v-for="report in reports">
                                             <!-- loop report table -->
-                                            <li class="nav-item" v-for="report in reports"><a
-                                                    href="javascript:void(0)">{{ report.report_description }}</a>
+                                            <li class="nav-item">
+                                                {{ report.report_description }}
                                             </li>
                                         </ul>
                                     </li>
@@ -283,6 +284,13 @@
             append: " ",
         });
         cu.start();
+
+        var app = new Vue({
+            el: '#admin',
+            data :{
+                reports : JSON.parse('<%- reports %>')
+            }
+        })
     </script>
 </body>
 
