@@ -1,10 +1,11 @@
 const express = require("express");
-// const pool = require("../config");
+const pool = require("../config");
 
 router = express.Router();
 
 router.get("/", async function (req, res, next) {
-  res.render('index', {folk : 'folk'})
+  const [rows, feilds] = await pool.query('SELECT * FROM room')
+  res.render('index', {rooms : JSON.stringify(rows)})
 });
 
 router.get("/login", async function (req, res, next) {
