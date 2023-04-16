@@ -73,13 +73,21 @@
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
-                            <div class="button add-list-button">
+                            <div class="button add-list-button" v-if="is_ActiveLogin == true">
                                 <a href="http://localhost:3000/login" class="btn">Log-in</a>
+                               
                             </div>
-                            <div class="button add-list-button">
+                            <div class="button add-list-button" v-if="is_ActiveLogout == true">
+                                <!-- <a :href="'http://localhost:3000/profile/' + local" class="btn">Profile {{local}}</a> -->
+                                <a href="http://localhost:3000/" class="btn" @click="logOut()">Log-out</a>
+                            </div>
+                            <div class="button add-list-button" v-if="is_ActiveAdmin == true">
+                                <a href="http://localhost:3000/admin" class="btn" >AdminHome</a>
+                            </div>
+                            <div class="button add-list-button" v-if="is_AcitveSignUp == true">
                                 <a href="http://localhost:3000/signup" class="btn">Sign-up</a>
                             </div>
-                            <div class="button add-list-button">
+                            <div class="button add-list-button" v-if="is_AcitveAdmin == true">
                                 <a href="http://localhost:3000/adminlogin" class="btn" >admin</a>
                             </div>
                         </nav>
@@ -261,7 +269,7 @@
                         <div class="single-footer f-about">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="assets/images/logo/white-logo.svg" alt="#">
+                                    <img src="/images/logo/white-logo.svg" alt="#">
                                 </a>
                             </div>
                             <p>Alway make you happy by providing the best option for you</p>
@@ -343,7 +351,7 @@
         <i class="lni lni-chevron-up"></i>
     </a>
 
-</div>
+ </div>
 
     <!-- ========================= JS here ========================= -->
     <script src="/js/bootstrap.min.js"></script>
@@ -367,7 +375,46 @@
         var app = new Vue({
             el: '#home',
             data :{
-                allroom : JSON.parse('<%- rooms %>')
+                allroom : JSON.parse('<%- rooms %>'),
+                is_ActiveLogin : true,
+                is_ActiveLogout : false,
+                is_AcitveAdmin : true,
+                is_AcitveSignUp : true,
+                is_ActiveAdmin : false,
+                local : ''
+                
+         
+            },
+
+            
+            created(){
+                // console.log(JSON.parse(localStorage.getItem('user'))[0].id)
+              if(localStorage.getItem('user') != null){
+
+                  let id = JSON.parse(localStorage.getItem('user'))[0].id;
+                  if(id < 100){
+                      this.is_ActiveAdmin = true
+                      this.is_ActiveLogout = true
+                      this.is_AcitveAdmin = false
+                  this.is_AcitveSignUp = false
+                  this.is_ActiveLogin = false
+                   }
+  
+                  else {
+                      this.is_ActiveLogin = false
+                  this.is_ActiveLogout = true
+                  this.is_AcitveAdmin = false
+                  this.is_AcitveSignUp = false
+                  this.local  = JSON.parse(localStorage.getItem('user'))[0].id
+                  }
+              }
+            },
+            methods:{
+                logOut(){
+                    localStorage.removeItem('user')              
+                window.location.href = 'http://localhost:3000/';
+
+                }
             }
         })
     </script>

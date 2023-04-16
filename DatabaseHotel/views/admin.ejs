@@ -16,12 +16,14 @@
     <link rel="stylesheet" href="/css/tiny-slider.css" />
     <link rel="stylesheet" href="/css/glightbox.min.css" />
     <link rel="stylesheet" href="/css/main.css" />
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 </head>
 
-<body id="admin">
+<body >
+
+    <div id="admin">
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -49,7 +51,7 @@
                     <div class="nav-inner">
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html" style="color:white">
+                            <a class="navbar-brand" href="http://localhost:3000/" style="color:white">
                                 <b style="font-size: larger;"> Hotel </b>
                                 <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
                             </a>
@@ -84,7 +86,7 @@
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="button add-list-button">
-                                <a href="index.html" class="btn">Log-out</a>
+                                <a @click="logOut()" class="btn">Log-out</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
@@ -266,6 +268,8 @@
         <i class="lni lni-chevron-up"></i>
     </a>
 
+</div>
+
     <!-- ========================= JS here ========================= -->
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/wow.min.js"></script>
@@ -289,6 +293,14 @@
             el: '#admin',
             data :{
                 reports : JSON.parse('<%- reports %>')
+            },
+
+            methods:{
+                logOut(){
+                    localStorage.removeItem('user')
+                
+                window.location.href = 'http://localhost:3000/';
+                }
             }
         })
     </script>

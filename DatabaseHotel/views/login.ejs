@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/tiny-slider.css" />
     <link rel="stylesheet" href="/css/glightbox.min.css" />
     <link rel="stylesheet" href="/css/main.css" />
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <style>
         body {
@@ -51,6 +51,7 @@
 </head>
 
 <body>
+    <div id="logIn">
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -132,14 +133,14 @@
     <div class="container">
         <div class="login" style="margin: 100px; text-align: center;font-size: larger;">
             <strong> Customer Log-in </strong> <br><br>
-
-            username : <input type="text" name="username" placeholder="username" /required>
+        <form action="/login" method="POST">
+            email : <input type="text" name="email" placeholder="email" /required>
             <br><br>
             password : <input type="password" name="password" placeholder="******" /required>
             <br><br>
 
             <a href="http://localhost:3000/"><button type="submit">login</button></a>
-
+        </form>
         </div>
 
     </div>
@@ -148,7 +149,7 @@
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>
     </a>
-
+</div>
     <!-- ========================= JS here ========================= -->
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/wow.min.js"></script>
@@ -167,6 +168,27 @@
             append: " ",
         });
         cu.start();
+
+        var app = new Vue({
+            el: '#logIn',
+            data :{
+                  cus : JSON.parse('<%- cus %>'),
+            },
+
+            methods :{
+            
+                
+            },
+            created(){
+                // console.log(this.cus[0].email)
+                if(this.cus != ''){
+                    localStorage.setItem('user', JSON.stringify([{email : this.cus[0].email, password: this.cus[0].password, id : this.cus[0].customer_id}]))
+                    window.location.href = 'http://localhost:3000/';
+                    console.log('folk')
+                }
+                
+            }
+        })
     </script>
 </body>
 

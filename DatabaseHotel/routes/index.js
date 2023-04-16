@@ -9,7 +9,24 @@ router.get("/", async function (req, res, next) {
 });
 
 router.get("/login", async function (req, res, next) {
-  res.render('login', { folks: 'folk' })
+  res.render('login', {msg : '', cus : JSON.stringify('')})
+});
+
+router.post("/login", async function (req, res, next) {
+  console.log(req.body)
+ const [rows, feilds] = await pool.query('SELECT email, password, customer_id FROM customers WHERE email = ? and password = ?', [req.body.email, req.body.password])
+ console.log(rows)
+ if(rows.length == 1){
+  
+   res.render('login', {cus : JSON.stringify(rows) || JSON.stringify(''), msg : ''})
+ 
+   
+  
+ }
+ else{
+   res.render('login', {msg : 'email และ password ผิด', cus : JSON.stringify('')})
+
+ }
 });
 
 router.get("/payment", async function (req, res, next) {
@@ -18,7 +35,29 @@ router.get("/payment", async function (req, res, next) {
 
 
 router.get("/signup", async function (req, res, next) {
-  res.render('signup', { folks: 'folk' })
+  res.render('signup', {error : ''})
+});
+
+router.post("/signup", async function (req, res, next) {
+  console.log(req.body)
+ //  const fname = req.body.fname
+ //  const lname = req.body.lname
+ //  const tel = req.body.tel
+ //  const email = req.body.email
+ //  const password = req.body.password
+  const {fname, lname, tel, email, password} = req.body
+  console.log(email)
+  const [Srows, Sfeilds] = await pool.query('SELECT email FROM  customers where email = ?', [email])
+  console.log(Srows)
+  if(Srows.length > 1){
+    res.render('signup', {error : 'Email ซ้ำนะไอสาส'})
+  }
+
+  else{
+    const [Irows, Ifeilds] = await pool.query('INSERT INTO customers (first_name, last_name, tel, email, password) VALUES (?, ?, ?, ?, ?)', [fname, lname, tel, email, password])
+    console.log(Irows)
+    res.redirect('/')
+  }
 });
 
 
@@ -40,7 +79,20 @@ router.get("/bookingOrder", async function (req, res, next) {
 });
 
 router.get("/adminlogin", async function (req, res, next) {
-  res.render('adminlogin', { folks: 'folk' })
+  res.render('adminlogin', {msg : '', emp : JSON.stringify('')})
+});
+
+router.post("/adminlogin", async function (req, res, next) {
+  // res.render('adminlogin', {folks : 'folk'})
+  console.log(req.body)
+  const [rows, feilds] = await pool.query('SELECT email, password, emp_id FROM employees WHERE email = ? and password = ?', [req.body.email, req.body.password])
+  console.log(rows)
+  if(rows.length == 1){
+    res.render('adminlogin', {emp : JSON.stringify(rows) || JSON.stringify(''), msg : ''})
+  }
+  else{
+    res.render('adminlogin', {msg : 'email และ password ผิด', emp : JSON.stringify('')})
+  }
 });
 
 
