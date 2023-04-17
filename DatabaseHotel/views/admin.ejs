@@ -16,8 +16,18 @@
     <link rel="stylesheet" href="/css/tiny-slider.css" />
     <link rel="stylesheet" href="/css/glightbox.min.css" />
     <link rel="stylesheet" href="/css/main.css" />
-    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+
+    <style>
+        .title {
+            color: #FF6B81;
+        }
+        .help {
+            font-size: 13px;
+            color: black;
+        }
+    </style>
 
 </head>
 
@@ -76,10 +86,12 @@
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">report</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4" v-for="report in reports">
+                                        <ul class="sub-menu collapse" id="submenu-1-4" >
                                             <!-- loop report table -->
-                                            <li class="nav-item">
-                                                {{ report.report_description }}
+                                            <li class="nav-item title"v-for="report in reports">
+                                                {{ report.report_title }}
+                                                <br>
+                                                <p class="help">{{ report.report_description}}</p>
                                             </li>
                                         </ul>
                                     </li>
@@ -127,25 +139,20 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h3 class="wow zoomIn" data-wow-delay=".2s">Our Room</h3>
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">information's room</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">ฟหกสดส้หฟ่ากด้ฟหา ฟหกด้่าฟหกด ฟหกด้ฟห่กาด้ฟ่าหกด
-                            ฟหกด่ฟหกาด้
-                            ฟหกส่ด่ฟ้หาก่ด้าฟหก้ด ฟหกด้ฟหา่กด ฟหกาด้่ฟ่หาก้ด
-                        </p>
+                        <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Room</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
                     <!-- Single Table -->
                     <div class="single-table wow fadeInUp" data-wow-delay=".2s">
                         <!-- Table Head -->
                         <div class="table-head">
-                            <h4 class="title">room name</h4>
-                            <p>description room</p>
+                            <h4 class="title">{{ room.room_type }}</h4>
+                            <p>{{ room.room_description }}</p>
                             <div class="price">
-                                <h2 class="amount">THB price room<span class="duration">/day</span></h2>
+                                <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
                             </div>
                             <div class="button">
                                 <a href="adminedit.html" class="btn">Edit data</a>
@@ -155,10 +162,17 @@
                             <h4 class="middle-title">What's Included</h4>
                             <ul class="table-list">
                                 <!-- loop facility -->
-                                <li><i class="lni lni-checkmark-circle"></i> Cras justo odio.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Dapibus ac facilisis in.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Morbi leo risus.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Potenti felis, in cras ligula.</li>
+                                <div v-if="room.room_service.length == 15">
+                                    <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
+                                    </li>
+                                    <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[1]}}
+                                    </li>
+                                </div>
+                                <div v-else>
+                                    <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
+                                    </li>
+                                </div>
+
                             </ul>
                         </div>
                     </div>
@@ -292,13 +306,14 @@
         var app = new Vue({
             el: '#admin',
             data :{
-                reports : JSON.parse('<%- reports %>')
+                reports : JSON.parse('<%- reports %>'),
+                allroom : JSON.parse('<%- rooms %>')
             },
 
             methods:{
                 logOut(){
                     localStorage.removeItem('user')
-                
+
                 window.location.href = 'http://localhost:3000/';
                 }
             }

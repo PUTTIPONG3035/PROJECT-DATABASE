@@ -41,6 +41,7 @@
         input {
             padding: 5px;
         }
+
         td {
             padding-left: 10px;
         }
@@ -50,7 +51,7 @@
 
 <body>
     <div id="signUp">
-    <!--[if lte IE 9]>
+        <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
@@ -58,67 +59,70 @@
       </p>
     <![endif]-->
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="preloader-inner">
+                <div class="preloader-icon">
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /End Preloader -->
-    <div class="container">
-        <div class="login" style="margin: 100px; text-align: center;font-size: larger;">
-            <strong style="font-size: 2rem;"> Sign-up </strong> <br><br>
-            <center>
-            <form action="/signup" method="POST">
-                <table>
-                    <tr>
-                        {{fname}}
-                        <td>First Name : </td>
-                        <td><input type="text" name="fname" placeholder="first name" /required v-model="fname"></td>
-                    </tr>
-                    <tr>
-                        <td>Last Name : </td>
-                        <td>
-                            <input type="text" name="lname" placeholder="last name" /required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>tel : </td>
-                        <td><input type="tel" name="tel" /required></td>
-                    </tr>
-                    <tr>
-                        <td>E-mail : </td>
-                        <td>
-                            <input type="email" name="email" /required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>password : </td>
-                        <td><input type="password" name="password" placeholder="******" /required></td>
-                    </tr>
-                    <tr>
-                        <td><%= error %></td>
-                    </tr>
+        <!-- /End Preloader -->
+        <div class="container">
+            <div class="login" style="margin: 100px; text-align: center;font-size: larger;">
+                <strong style="font-size: 2rem;"> Sign-up </strong> <br><br>
+                <center>
+                    <form action="/signup" method="POST">
+                        <table>
+                            <tr>
+                                {{fname}}
+                                <td>First Name : </td>
+                                <td><input type="text" name="fname" placeholder="first name" /required v-model="fname">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Last Name : </td>
+                                <td>
+                                    <input type="text" name="lname" placeholder="last name" /required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>tel : </td>
+                                <td><input type="tel" name="tel" /required></td>
+                            </tr>
+                            <tr>
+                                <td>E-mail : </td>
+                                <td>
+                                    <input type="email" name="email" /required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>password : </td>
+                                <td><input type="password" name="password" placeholder="******" /required></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%= error %>
+                                </td>
+                            </tr>
 
-                </table>
-            </center>
+                        </table>
 
 
-            <br><br>
-            <a><button type="submit">Sign Up</button></a>
-            <a href="http://localhost:3000/login"><button type="submit">login</button></a>
-           </form>
+                        <br><br>
+                        <a><button type="submit">Sign Up</button></a>
+                        <a href="http://localhost:3000/login"><button type="submit">login</button></a>
+                    </form>
+                </center>
+            </div>
+
         </div>
 
-    </div>
-
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top">
-        <i class="lni lni-chevron-up"></i>
-    </a>
+        <!-- ========================= scroll-top ========================= -->
+        <a href="#" class="scroll-top">
+            <i class="lni lni-chevron-up"></i>
+        </a>
     </div>
 
     <!-- ========================= JS here ========================= -->
@@ -143,14 +147,14 @@
 
         var app = new Vue({
             el: '#signUp',
-      
-            data :{
-                  fname : '',
-                  lname : '',
-                  tel : '',
-                  email : '',
-                  password : '',
-              
+
+            data: {
+                fname: '',
+                lname: '',
+                tel: '',
+                email: '',
+                password: '',
+
             },
         })
     </script>

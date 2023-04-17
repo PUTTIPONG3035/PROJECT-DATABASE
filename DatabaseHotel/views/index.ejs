@@ -23,7 +23,7 @@
 <body>
 
     <div id="home">
-    <!--[if lte IE 9]>
+        <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
@@ -31,263 +31,271 @@
       </p>
     <![endif]-->
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="preloader-inner">
+                <div class="preloader-icon">
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /End Preloader -->
+        <!-- /End Preloader -->
 
-    <!-- Start Header Area -->
-    <header class="header navbar-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="nav-inner">
-                        <!-- Start Navbar -->
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="http://localhost:3000/" style="color:white">
-                                <b style="font-size: larger;"> Hotel </b>
-                                <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
-                            </a>
-                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ms-auto">
-                                    <li class="nav-item">
-                                        <a href="#home" class="page-scroll active"
-                                            aria-label="Toggle navigation">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#booking" class="page-scroll"
-                                            aria-label="Toggle navigation">Booking</a>
-                                    </li>
-                                </ul>
-                            </div> <!-- navbar collapse -->
-                            <div class="button add-list-button" v-if="is_ActiveLogin == true">
-                                <a href="http://localhost:3000/login" class="btn">Log-in</a>
-                               
-                            </div>
-                            <div class="button add-list-button" v-if="is_ActiveLogout == true">
-                                <!-- <a :href="'http://localhost:3000/profile/' + local" class="btn">Profile {{local}}</a> -->
-                                <a href="http://localhost:3000/" class="btn" @click="logOut()">Log-out</a>
-                            </div>
-                            <div class="button add-list-button" v-if="is_ActiveAdmin == true">
-                                <a href="http://localhost:3000/admin" class="btn" >AdminHome</a>
-                            </div>
-                            <div class="button add-list-button" v-if="is_AcitveSignUp == true">
-                                <a href="http://localhost:3000/signup" class="btn">Sign-up</a>
-                            </div>
-                            <div class="button add-list-button" v-if="is_AcitveAdmin == true">
-                                <a href="http://localhost:3000/adminlogin" class="btn" >admin</a>
-                            </div>
-                        </nav>
-                        <!-- End Navbar -->
+        <!-- Start Header Area -->
+        <header class="header navbar-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="nav-inner">
+                            <!-- Start Navbar -->
+                            <nav class="navbar navbar-expand-lg">
+                                <a class="navbar-brand" href="http://localhost:3000/" style="color:white">
+                                    <b style="font-size: larger;"> Hotel </b>
+                                    <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
+                                </a>
+                                <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                    <ul id="nav" class="navbar-nav ms-auto">
+                                        <li class="nav-item">
+                                            <a href="#home" class="page-scroll active"
+                                                aria-label="Toggle navigation">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#booking" class="page-scroll"
+                                                aria-label="Toggle navigation">Booking</a>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <div class="button add-list-button" v-if="is_ActiveLogin == true">
+                                    <a href="http://localhost:3000/login" class="btn">Log-in</a>
+
+                                </div>
+                                <div class="button add-list-button" v-if="is_ActiveLogout == true">
+                                    <!-- <a :href="'http://localhost:3000/profile/' + local" class="btn">Profile {{local}}</a> -->
+                                    <a href="http://localhost:3000/" class="btn" @click="logOut()">Log-out</a>
+                                </div>
+                                <div class="button add-list-button" v-if="is_ActiveAdmin == true">
+                                    <a href="http://localhost:3000/admin" class="btn">AdminHome</a>
+                                </div>
+                                <div class="button add-list-button" v-if="is_AcitveSignUp == true">
+                                    <a href="http://localhost:3000/signup" class="btn">Sign-up</a>
+                                </div>
+                                <div class="button add-list-button" v-if="is_AcitveAdmin == true">
+                                    <a href="http://localhost:3000/adminlogin" class="btn">admin</a>
+                                </div>
+                            </nav>
+                            <!-- End Navbar -->
+                        </div>
                     </div>
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </header>
-    <!-- End Header Area -->
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </header>
+        <!-- End Header Area -->
 
-    <!-- Start Hero Area -->
-    <section id="home" class="hero-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 col-md-12 col-12">
-                    <div class="hero-content">
-                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">Enjoy your dream vacation.</h1>
-                        <p class="wow fadeInLeft" data-wow-delay=".6s">Welcome all customers to our online booking services website.
-                        </p>
-                        <!-- <div class="button wow fadeInLeft" data-wow-delay=".8s">
+        <!-- Start Hero Area -->
+        <section id="home" class="hero-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-12 col-12">
+                        <div class="hero-content">
+                            <h1 class="wow fadeInLeft" data-wow-delay=".4s">Enjoy your dream vacation.</h1>
+                            <p class="wow fadeInLeft" data-wow-delay=".6s">Welcome all customers to our online booking
+                                services website.
+                            </p>
+                            <!-- <div class="button wow fadeInLeft" data-wow-delay=".8s">
                             <a href="javascript:void(0)" class="btn"><i class="lni lni-apple"></i> App Store</a>
                             <a href="javascript:void(0)" class="btn btn-alt"><i class="lni lni-play-store"></i> Google
                                 Play</a>
                         </div> -->
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12 col-12">
-                    <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o=" alt="#">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Hero Area -->
-
-    <!-- Start Features Area -->
-    <section id="features" class="features section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h3 class="wow zoomIn" data-wow-delay=".2s">Facility</h3>
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Your experince will gets better and better over time.
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
-                        <i class="lni lni-service"></i>
-                        <h3>Breakfast</h3>
-                        <p>Breakfast's time schedule & Breakfast menu </p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
-                        <i class="lni lni-car"></i>
-                        <h3>Park</h3>
-                        <p>Available parking lot & time schedule </p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
-                        <i class="lni lni-dumbbell"></i>
-                        <h3>fitness</h3>
-                        <p> Exhilarating gym & Fittness schedule</p>
-                    </div>
-                    <!-- End Single Feature -->
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- End Features Area -->
-
-    <!-- Start Achievement Area -->
-    <section class="our-achievement section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
-                    <div class="title">
-                        <h2>Trusted by tourist and tour</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
-                                <h3 class="counter"><span id="secondo1" class="countup" cup-end="100">100</span>%</h3>
-                                <p>convenient</p>
-                            </div>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
-                                <h3 class="counter"><span id="secondo2" class="countup" cup-end="100">100</span>%</h3>
-                                <p>comfortable</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
-                                <h3 class="counter"><span id="secondo3" class="countup" cup-end="100">100</span>%</h3>
-                                <p>friendly price</p>
-                            </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-12">
+                        <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
+                            <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o="
+                                alt="#">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End Achievement Area -->
+        </section>
+        <!-- End Hero Area -->
 
-    <!-- Start Pricing Table Area -->
-    <section id="booking" class="pricing-table section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <!-- <h3 class="wow zoomIn" data-wow-delay=".2s"></h3> -->
-                        <h2 class="wow fadeInUp" data-wow-delay=".2s">Room's Information</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".4s">Find the room that suits for your need
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
-                    <!-- Single Table -->
-                    <div class="single-table wow fadeInUp" data-wow-delay=".2s">
-                        <!-- Table Head -->
-                        <div class="table-head">
-                            <h4 class="title">{{room.room_type}}</h4>
-
-                            <p>{{room.room_description}}</p>
-                            <div class="price">
-                                <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
-                            </div>
-                            <div class="button">
-                                <a href="http://localhost:3000/booking" class="btn">Booking Now</a>
-                            </div>
-                        </div>
-                        <div class="table-content">
-                            <h4 class="middle-title">Service</h4>
-                            <ul class="table-list">
-                                <!-- loop facility -->
-                            <div v-if="room.room_service.length == 15">
-                                <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}} </li>
-                                <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[1]}}</li>
-                            </div>
-                            <div v-else>
-                                <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}} </li>
-                            </div>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <!-- Start Footer Top -->
-        <div class="footer-top">
+        <!-- Start Features Area -->
+        <section id="features" class="features section">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-about">
-                            <div class="logo">
-                                <a href="index.html">
-                                    <img src="/images/logo/white-logo.svg" alt="#">
-                                </a>
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h3 class="wow zoomIn" data-wow-delay=".2s">Facility</h3>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Your experince will gets better and better
+                                over time.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Single Feature -->
+                        <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
+                            <i class="lni lni-service"></i>
+                            <h3>Breakfast</h3>
+                            <p>Breakfast's time schedule & Breakfast menu </p>
+                        </div>
+                        <!-- End Single Feature -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Single Feature -->
+                        <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
+                            <i class="lni lni-car"></i>
+                            <h3>Park</h3>
+                            <p>Available parking lot & time schedule </p>
+                        </div>
+                        <!-- End Single Feature -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Single Feature -->
+                        <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
+                            <i class="lni lni-dumbbell"></i>
+                            <h3>fitness</h3>
+                            <p> Exhilarating gym & Fittness schedule</p>
+                        </div>
+                        <!-- End Single Feature -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- End Features Area -->
+
+        <!-- Start Achievement Area -->
+        <section class="our-achievement section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
+                        <div class="title">
+                            <h2>Trusted by tourist and tour</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
+                                    <h3 class="counter"><span id="secondo1" class="countup" cup-end="100">100</span>%
+                                    </h3>
+                                    <p>convenient</p>
+                                </div>
                             </div>
-                            <p>Alway make you happy by providing the best option for you</p>
-                            <ul class="social">
-                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
-                            </ul>
-                            <!-- <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
+                                    <h3 class="counter"><span id="secondo2" class="countup" cup-end="100">100</span>%
+                                    </h3>
+                                    <p>comfortable</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
+                                    <h3 class="counter"><span id="secondo3" class="countup" cup-end="100">100</span>%
+                                    </h3>
+                                    <p>friendly price</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Achievement Area -->
+
+        <!-- Start Pricing Table Area -->
+        <section id="booking" class="pricing-table section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Room's Information</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".4s">Find the room that suits for your need
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
+                        <!-- Single Table -->
+                        <div class="single-table wow fadeInUp" data-wow-delay=".2s">
+                            <!-- Table Head -->
+                            <div class="table-head">
+                                <h4 class="title">{{room.room_type}}</h4>
+
+                                <p>{{room.room_description}}</p>
+                                <div class="price">
+                                    <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
+                                </div>
+                                <div class="button">
+                                    <a href="http://localhost:3000/booking" class="btn">Booking Now</a>
+                                </div>
+                            </div>
+                            <div class="table-content">
+                                <h4 class="middle-title">Service</h4>
+                                <ul class="table-list">
+                                    <!-- loop facility -->
+                                    <div v-if="room.room_service.length == 15">
+                                        <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
+                                        </li>
+                                        <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[1]}}
+                                        </li>
+                                    </div>
+                                    <div v-else>
+                                        <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
+                                        </li>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Footer Area -->
+        <footer class="footer">
+            <!-- Start Footer Top -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-about">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="/images/logo/white-logo.svg" alt="#">
+                                    </a>
+                                </div>
+                                <p>Alway make you happy by providing the best option for you</p>
+                                <ul class="social">
+                                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
+                                </ul>
+                                <!-- <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
                                     rel="nofollow" target="_blank">UIdeck</a>
                             </p> -->
+                            </div>
+                            <!-- End Single Widget -->
                         </div>
-                        <!-- End Single Widget -->
-                    </div>
-                    <!-- <div class="col-lg-8 col-md-8 col-12">
+                        <!-- <div class="col-lg-8 col-md-8 col-12">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-12">
                                 <div class="single-footer f-link">
@@ -339,19 +347,19 @@
                             </div>
                         </div>
                     </div> -->
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--/ End Footer Top -->
-    </footer>
-    <!--/ End Footer Area -->
+            <!--/ End Footer Top -->
+        </footer>
+        <!--/ End Footer Area -->
 
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top">
-        <i class="lni lni-chevron-up"></i>
-    </a>
+        <!-- ========================= scroll-top ========================= -->
+        <a href="#" class="scroll-top">
+            <i class="lni lni-chevron-up"></i>
+        </a>
 
- </div>
+    </div>
 
     <!-- ========================= JS here ========================= -->
     <script src="/js/bootstrap.min.js"></script>
@@ -374,45 +382,45 @@
 
         var app = new Vue({
             el: '#home',
-            data :{
-                allroom : JSON.parse('<%- rooms %>'),
-                is_ActiveLogin : true,
-                is_ActiveLogout : false,
-                is_AcitveAdmin : true,
-                is_AcitveSignUp : true,
-                is_ActiveAdmin : false,
-                local : ''
-                
-         
+            data: {
+                allroom: JSON.parse('<%- rooms %>'),
+                is_ActiveLogin: true,
+                is_ActiveLogout: false,
+                is_AcitveAdmin: true,
+                is_AcitveSignUp: true,
+                is_ActiveAdmin: false,
+                local: ''
+
+
             },
 
-            
-            created(){
+
+            created() {
                 // console.log(JSON.parse(localStorage.getItem('user'))[0].id)
-              if(localStorage.getItem('user') != null){
+                if (localStorage.getItem('user') != null) {
 
-                  let id = JSON.parse(localStorage.getItem('user'))[0].id;
-                  if(id < 100){
-                      this.is_ActiveAdmin = true
-                      this.is_ActiveLogout = true
-                      this.is_AcitveAdmin = false
-                  this.is_AcitveSignUp = false
-                  this.is_ActiveLogin = false
-                   }
-  
-                  else {
-                      this.is_ActiveLogin = false
-                  this.is_ActiveLogout = true
-                  this.is_AcitveAdmin = false
-                  this.is_AcitveSignUp = false
-                  this.local  = JSON.parse(localStorage.getItem('user'))[0].id
-                  }
-              }
+                    let id = JSON.parse(localStorage.getItem('user'))[0].id;
+                    if (id < 100) {
+                        this.is_ActiveAdmin = true
+                        this.is_ActiveLogout = true
+                        this.is_AcitveAdmin = false
+                        this.is_AcitveSignUp = false
+                        this.is_ActiveLogin = false
+                    }
+
+                    else {
+                        this.is_ActiveLogin = false
+                        this.is_ActiveLogout = true
+                        this.is_AcitveAdmin = false
+                        this.is_AcitveSignUp = false
+                        this.local = JSON.parse(localStorage.getItem('user'))[0].id
+                    }
+                }
             },
-            methods:{
-                logOut(){
-                    localStorage.removeItem('user')              
-                window.location.href = 'http://localhost:3000/';
+            methods: {
+                logOut() {
+                    localStorage.removeItem('user')
+                    window.location.href = 'http://localhost:3000/';
 
                 }
             }
