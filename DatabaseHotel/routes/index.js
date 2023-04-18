@@ -156,8 +156,17 @@ router.post('/booking/:id', async function (req, res, next) {
 //bookingorder
 router.get("/bookingOrder", async function (req, res, next) {
   const [booking_order, feilds] = await pool.query("select * from booking")
+  console.log(booking_order)
   res.render('booking_order', { booking_order : JSON.stringify(booking_order) })
 });
+
+// cancel booking order
+
+router.get("/bookingOrder/cancel/:bookingId", async function (req, res, next) {
+  await pool.query("delete from booking where booking_id = ?", [req.params.bookingId])
+  res.redirect('/bookingOrder');
+});
+
 
 router.get("/adminlogin", async function (req, res, next) {
   res.render('adminlogin', { msg: '', emp: JSON.stringify('') })

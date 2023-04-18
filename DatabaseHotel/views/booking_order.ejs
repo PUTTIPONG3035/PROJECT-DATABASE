@@ -30,7 +30,7 @@
     </style>
 </head>
 
-<body id="orders">
+<body>
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -66,30 +66,16 @@
                         <td>{{ item.customer_id }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.room_id }}</td>
-                        <td>{{ item.check_in }}</td>
-                        <td>{{ item.chekc_out }}</td>
+                        <td>{{ item.check_in.split("T")[0] }}</td>
+                        <td>{{ item.check_out.split("T")[0] }}</td>
                         <td>{{ item.price }}</td>
-                        <td>{{ item.booking_date }}</td>
+                        <td>{{ item.booking_date.split("T")[0] + ' ('+ item.booking_date.substring(12, 19) + ')'}}</td>
                         <td>{{ item.payment_id }}</td>
-                        <td> <button style="border-radius: 5px;"> cancel </button></td>
+                        <td> <button style="border-radius: 5px;" @click="cancel(item.booking_id)"> cancel </button></td>
                     </tr>
-                    <tr>
-                        <td>B001234</td>
-                        <td>100</td>
-                        <td>Stefen</td>
-                        <td>r009</td>
-                        <td>16-10-2022</td>
-                        <td>18-10-2022</td>
-                        <td>1700</td>
-                        <td>10-10-2022</td>
-                        <td>p564</td>
-                        <td> <button style="border-radius: 5px;"> cancel </button></td>
-                    </tr>
-                    <tr>
                 </tbody>
             </table>
         </div>
-        {{ asdf }}
     </div>
 
 
@@ -121,10 +107,19 @@
 
         var app = new Vue({
             el: '#orders',
-            data :{
-                history : JSON.parse('<%- booking_order %>'),
-                asdf: "asdflasdjkfkljasdfk"
+            data: {
+                history: JSON.parse('<%- booking_order %>'),
             },
+            methods: {
+                cancel(bookingId) {
+
+                    if (confirm("คุณต้องการยกเลิกการจองหมายเลข " + bookingId) == true) {
+                        window.location.href = `http://localhost:3000/bookingOrder/cancel/${bookingId}`
+                    } else {
+                        window.location.href = 'http://localhost:3000/bookingOrder'
+                    }
+                }
+            }
         })
     </script>
 </body>
