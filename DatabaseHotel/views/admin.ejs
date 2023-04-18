@@ -143,6 +143,7 @@
                     </div>
                 </div>
             </div>
+            <div id="editPlace"></div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
                     <!-- Single Table -->
@@ -155,7 +156,7 @@
                                 <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
                             </div>
                             <div class="button">
-                                <a href="adminedit.html" class="btn">Edit data</a>
+                                <a class="btn" @click="edit(room.room_id)">Edit data</a>
                             </div>
                         </div>
                         <div class="table-content">
@@ -315,6 +316,11 @@
                     localStorage.removeItem('user')
 
                 window.location.href = 'http://localhost:3000/';
+                },
+                edit(roomId) {
+                    console.log('asdf')
+                    document.getElementById('editPlace').innerHTML = 'asdkfjasdlkf'
+
                 }
             }
         })

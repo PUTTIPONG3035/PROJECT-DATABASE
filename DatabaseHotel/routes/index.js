@@ -156,8 +156,9 @@ router.post('/booking/:id', async function (req, res, next) {
 //bookingorder
 router.get("/bookingOrder", async function (req, res, next) {
   const [booking_order, feilds] = await pool.query("select * from booking")
+  const [booking, feilds1] = await pool.query("select * from booking join payments using(payment_id)")
   console.log(booking_order)
-  res.render('booking_order', { booking_order : JSON.stringify(booking_order) })
+  res.render('booking_order', { booking_order : JSON.stringify(booking) })
 });
 
 // cancel booking order
