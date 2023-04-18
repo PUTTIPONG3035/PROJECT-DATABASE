@@ -30,7 +30,7 @@
     </style>
 </head>
 
-<body>
+<body id="orders">
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -60,17 +60,17 @@
                     <td>payment id</td>
                     <td> </td>
                 </tr>
-                <tbody class="has-background-light subtitle" v-for="(item, index) in history" :key="item">
+                <tbody class="has-background-light subtitle" v-for="item in history" :key="item">
                     <tr>
-                        <td>B001234</td>
-                        <td>100</td>
-                        <td>Stefen</td>
-                        <td>r009</td>
-                        <td>16-10-2022</td>
-                        <td>18-10-2022</td>
-                        <td>1700</td>
-                        <td>10-10-2022</td>
-                        <td>p564</td>
+                        <td>{{ item.booking_id }}</td>
+                        <td>{{ item.customer_id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.room_id }}</td>
+                        <td>{{ item.check_in }}</td>
+                        <td>{{ item.chekc_out }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>{{ item.booking_date }}</td>
+                        <td>{{ item.payment_id }}</td>
                         <td> <button style="border-radius: 5px;"> cancel </button></td>
                     </tr>
                     <tr>
@@ -89,6 +89,7 @@
                 </tbody>
             </table>
         </div>
+        {{ asdf }}
     </div>
 
 
@@ -115,6 +116,16 @@
             append: " ",
         });
         cu.start();
+
+
+
+        var app = new Vue({
+            el: '#orders',
+            data :{
+                history : JSON.parse('<%- booking_order %>'),
+                asdf: "asdflasdjkfkljasdfk"
+            },
+        })
     </script>
 </body>
 
