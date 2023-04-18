@@ -28,34 +28,41 @@
 </head>
 
 <body>
-    <div class="columns" style="margin-top: 200px" id="Booking">
+    <div class="columns" style="margin-top: 200px" id="payment">
         <div class="column"></div>
-        <div class="box column is-three-fifths has-text-centered" style="margin-top: 20px; padding: 50px; font-size: 1rem">
-            <label for="">ช่องทางการจ่ายเงิน</label>
-            <div>
-                <div class="select" style="margin-top: 10px">
-                    <select style="width: 230px" v-model="checkType">
-                        <option value="credit">credit card</option>
-                        <option value="cash">cash</option>
-                    </select>
-                </div>
-            </div>
-            <br>
-            <label for="">จำนวนเงินที่โอน</label>
-            <div>
-                <input type="number" class="input" style="width: 230px; margin-top: 10px" />
-            </div>
-            <br>
-            <a href="profile.html" class="button has-background-danger is-normal is-rounded"
-                @click="confirm_booking()">Next</a>
-        </div>
-
+     <form :action="'/payment/' + name " method="POST">
+         <div class="box column  has-text-centered" style="margin-top: 20px; padding: 50px; font-size: 1rem">
+             <label for="">ช่องทางการจ่ายเงิน</label>
+             <div>
+                 <div class="select" style="margin-top: 10px">
+                     <select style="width: 230px" v-model="checkType" name="checkType">
+                         <option value="credit card">credit card</option>
+                         <option value="cash">cash</option>
+                     </select>
+                 </div>
+             </div>
+             <br>
+             <label for="">จำนวนเงินที่โอน</label>
+             <div>
+                 <input type="number" v-model="number" class="input" style="width: 230px; margin-top: 10px" name="number" />{{number}}
+             </div>
+             <br>
+             <a> <button class="button has-background-danger is-normal is-rounded" type="submit">Next</button> </a>
+         </div>
+     </form>
         <div class="column"></div>
     </div>
 
-
-
-
+    <script>
+        var app = new Vue({
+           el: '#payment',
+           data :{
+                 name : JSON.parse('<%- name %>'),
+                 checkType : '',
+                 number : ''
+           }
+       })
+   </script>
 </body>
 
 </html>
