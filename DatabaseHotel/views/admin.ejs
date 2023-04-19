@@ -23,6 +23,7 @@
         .title {
             color: #FF6B81;
         }
+
         .help {
             font-size: 13px;
             color: black;
@@ -31,10 +32,10 @@
 
 </head>
 
-<body >
+<body>
 
     <div id="admin">
-    <!--[if lte IE 9]>
+        <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
@@ -42,248 +43,252 @@
       </p>
     <![endif]-->
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-    <!-- /End Preloader -->
-
-    <!-- Start Header Area -->
-    <header class="header navbar-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="nav-inner">
-                        <!-- Start Navbar -->
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="http://localhost:3000/" style="color:white">
-                                <b style="font-size: larger;"> Hotel </b>
-                                <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
-                            </a>
-                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ms-auto">
-                                    <li class="nav-item">
-                                        <a href="#allroom" class="page-scroll" aria-label="Toggle navigation">All
-                                            Room</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/bookingOrder" aria-label="Toggle navigation">Booking Orders</a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                            data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
-                                            aria-expanded="false" aria-label="Toggle navigation">report</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4" >
-                                            <!-- loop report table -->
-                                            <li class="nav-item title"v-for="report in reports">
-                                                {{ report.report_title }}
-                                                <br>
-                                                <p class="help">{{ report.report_description}}</p>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div> <!-- navbar collapse -->
-                            <div class="button add-list-button">
-                                <a @click="logOut()" class="btn">Log-out</a>
-                            </div>
-                        </nav>
-                        <!-- End Navbar -->
-                    </div>
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </header>
-    <!-- End Header Area -->
-
-    <!-- Start Hero Area -->
-    <section id="home" class="hero-area">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-5 col-md-12 col-12">
-                    <div class="hero-content">
-                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">HOTEL's INFORMATION</h1>
-                        <p class="wow fadeInLeft" data-wow-delay=".6s">Admin Page
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12 col-12">
-                    <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o="
-                            alt="#">
-                    </div>
+        <!-- Preloader -->
+        <div class="preloader">
+            <div class="preloader-inner">
+                <div class="preloader-icon">
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End Hero Area -->
+        <!-- /End Preloader -->
 
-
-
-    <!-- Start Pricing Table Area -->
-    <section id="allroom" class="pricing-table section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Room</h2>
-                    </div>
-                </div>
-            </div>
-            <div id="editPlace"></div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
-                    <!-- Single Table -->
-                    <div class="single-table wow fadeInUp" data-wow-delay=".2s">
-                        <!-- Table Head -->
-                        <div class="table-head">
-                            <h4 class="title">{{ room.room_type }}</h4>
-                            <p>{{ room.room_description }}</p>
-                            <div class="price">
-                                <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
-                            </div>
-                            <div class="button">
-                                <a class="btn" @click="edit(room.room_id)">Edit data</a>
-                            </div>
-                        </div>
-                        <div class="table-content">
-                            <h4 class="middle-title">What's Included</h4>
-                            <ul class="table-list">
-                                <!-- loop facility -->
-                                <div v-if="room.room_service.length == 15">
-                                    <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
-                                    </li>
-                                    <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[1]}}
-                                    </li>
-                                </div>
-                                <div v-else>
-                                    <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
-                                    </li>
-                                </div>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Start Footer Area -->
-    <footer class="footer">
-        <!-- Start Footer Top -->
-        <div class="footer-top">
+        <!-- Start Header Area -->
+        <header class="header navbar-area">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Single Widget -->
-                        <div class="single-footer f-about">
-                            <div class="logo">
-                                <a href="index.html">
-                                    <img src="/images/logo/white-logo.svg" alt="#">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <div class="nav-inner">
+                            <!-- Start Navbar -->
+                            <nav class="navbar navbar-expand-lg">
+                                <a class="navbar-brand" href="http://localhost:3000/" style="color:white">
+                                    <b style="font-size: larger;"> Hotel </b>
+                                    <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
                                 </a>
-                            </div>
-                            <p>Making the world a better place through constructing elegant hierarchies.</p>
-                            <ul class="social">
-                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
-                            </ul>
-                            <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
-                                    rel="nofollow" target="_blank">UIdeck</a>
+                                <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                    <span class="toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                    <ul id="nav" class="navbar-nav ms-auto">
+                                        <li class="nav-item">
+                                            <a href="#allroom" class="page-scroll" aria-label="Toggle navigation">All
+                                                Room</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/bookingOrder" aria-label="Toggle navigation">Booking Orders</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="dd-menu collapsed" href="javascript:void(0)"
+                                                data-bs-toggle="collapse" data-bs-target="#submenu-1-4"
+                                                aria-controls="navbarSupportedContent" aria-expanded="false"
+                                                aria-label="Toggle navigation">report</a>
+                                            <ul class="sub-menu collapse" id="submenu-1-4">
+                                                <!-- loop report table -->
+                                                <li class="nav-item title" v-for="report in reports">
+                                                    {{ report.report_title }}
+                                                    <br>
+                                                    <p class="help">{{ report.report_description}}</p>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div> <!-- navbar collapse -->
+                                <div class="button add-list-button">
+                                    <a @click="logOut()" class="btn">Log-out</a>
+                                </div>
+                            </nav>
+                            <!-- End Navbar -->
+                        </div>
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </header>
+        <!-- End Header Area -->
+
+        <!-- Start Hero Area -->
+        <section id="home" class="hero-area">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-md-12 col-12">
+                        <div class="hero-content">
+                            <h1 class="wow fadeInLeft" data-wow-delay=".4s">HOTEL's INFORMATION</h1>
+                            <p class="wow fadeInLeft" data-wow-delay=".6s">Admin Page
                             </p>
                         </div>
-                        <!-- End Single Widget -->
                     </div>
-                    <div class="col-lg-8 col-md-8 col-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Solutions</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Marketing</a></li>
-                                        <li><a href="javascript:void(0)">Analytics</a></li>
-                                        <li><a href="javascript:void(0)">Commerce</a></li>
-                                        <li><a href="javascript:void(0)">Insights</a></li>
-                                        <li><a href="javascript:void(0)">Promotion</a></li>
-                                    </ul>
+                    <div class="col-lg-7 col-md-12 col-12">
+                        <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
+                            <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o="
+                                alt="#">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Hero Area -->
+
+        {{ editRoom }}
+
+        <!-- Start Pricing Table Area -->
+        <section id="allroom" class="pricing-table section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Room</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- <form action="editRoom/:{{data}}/:${roomId} " method="POST" id="editPlace"></form> -->
+                <form :action="'/editRoom/' + data + '/' + roomId " method="POST" id="editPlace"></form>
+                <!-- <form action=`editRoom/{{data}}/${roomId} ` method="POST" id="editPlace"></form> -->
+                <!-- <div id="editPlace"></div> -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
+                        <!-- Single Table -->
+                        <div class="single-table wow fadeInUp" data-wow-delay=".2s">
+                            <!-- Table Head -->
+                            <div class="table-head">
+                                <h4 class="title">{{ room.room_type }}</h4>
+                                <p>{{ room.room_description }}</p>
+                                <div class="price">
+                                    <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
                                 </div>
-                                <!-- End Single Widget -->
+                                <div class="button">
+                                    <a class="btn" @click="edit(room.room_id)">Edit data</a>
+                                </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Support</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Pricing</a></li>
-                                        <li><a href="javascript:void(0)">Documentation</a></li>
-                                        <li><a href="javascript:void(0)">Guides</a></li>
-                                        <li><a href="javascript:void(0)">API Status</a></li>
-                                        <li><a href="javascript:void(0)">Live Support</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Company</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">About Us</a></li>
-                                        <li><a href="javascript:void(0)">Our Blog</a></li>
-                                        <li><a href="javascript:void(0)">Jobs</a></li>
-                                        <li><a href="javascript:void(0)">Press</a></li>
-                                        <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Legal</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Terms & Conditions</a></li>
-                                        <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                                        <li><a href="javascript:void(0)">Catering Services</a></li>
-                                        <li><a href="javascript:void(0)">Customer Relations</a></li>
-                                        <li><a href="javascript:void(0)">Innovation</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
+                            <div class="table-content">
+                                <h4 class="middle-title">What's Included</h4>
+                                <ul class="table-list">
+                                    <!-- loop facility -->
+                                    <div v-if="room.room_service.length == 15">
+                                        <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
+                                        </li>
+                                        <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[1]}}
+                                        </li>
+                                    </div>
+                                    <div v-else>
+                                        <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
+                                        </li>
+                                    </div>
+
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--/ End Footer Top -->
-    </footer>
-    <!--/ End Footer Area -->
+        </section>
 
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top">
-        <i class="lni lni-chevron-up"></i>
-    </a>
+        <!-- Start Footer Area -->
+        <footer class="footer">
+            <!-- Start Footer Top -->
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-about">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="/images/logo/white-logo.svg" alt="#">
+                                    </a>
+                                </div>
+                                <p>Making the world a better place through constructing elegant hierarchies.</p>
+                                <ul class="social">
+                                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
+                                </ul>
+                                <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
+                                        rel="nofollow" target="_blank">UIdeck</a>
+                                </p>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <!-- Single Widget -->
+                                    <div class="single-footer f-link">
+                                        <h3>Solutions</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Marketing</a></li>
+                                            <li><a href="javascript:void(0)">Analytics</a></li>
+                                            <li><a href="javascript:void(0)">Commerce</a></li>
+                                            <li><a href="javascript:void(0)">Insights</a></li>
+                                            <li><a href="javascript:void(0)">Promotion</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Single Widget -->
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <!-- Single Widget -->
+                                    <div class="single-footer f-link">
+                                        <h3>Support</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Pricing</a></li>
+                                            <li><a href="javascript:void(0)">Documentation</a></li>
+                                            <li><a href="javascript:void(0)">Guides</a></li>
+                                            <li><a href="javascript:void(0)">API Status</a></li>
+                                            <li><a href="javascript:void(0)">Live Support</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Single Widget -->
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <!-- Single Widget -->
+                                    <div class="single-footer f-link">
+                                        <h3>Company</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">About Us</a></li>
+                                            <li><a href="javascript:void(0)">Our Blog</a></li>
+                                            <li><a href="javascript:void(0)">Jobs</a></li>
+                                            <li><a href="javascript:void(0)">Press</a></li>
+                                            <li><a href="javascript:void(0)">Contact Us</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Single Widget -->
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <!-- Single Widget -->
+                                    <div class="single-footer f-link">
+                                        <h3>Legal</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0)">Terms & Conditions</a></li>
+                                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                                            <li><a href="javascript:void(0)">Catering Services</a></li>
+                                            <li><a href="javascript:void(0)">Customer Relations</a></li>
+                                            <li><a href="javascript:void(0)">Innovation</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- End Single Widget -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ End Footer Top -->
+        </footer>
+        <!--/ End Footer Area -->
 
-</div>
+        <!-- ========================= scroll-top ========================= -->
+        <a href="#" class="scroll-top">
+            <i class="lni lni-chevron-up"></i>
+        </a>
+
+    </div>
 
     <!-- ========================= JS here ========================= -->
     <script src="/js/bootstrap.min.js"></script>
@@ -306,25 +311,55 @@
 
         var app = new Vue({
             el: '#admin',
-            data :{
-                reports : JSON.parse('<%- reports %>'),
-                allroom : JSON.parse('<%- rooms %>')
+            data: {
+                editRoom: JSON.parse('<%- editRoom %>'),
+                reports: JSON.parse('<%- reports %>'),
+                allroom: JSON.parse('<%- rooms %>'),
+                roomId: ''
             },
 
-            methods:{
-                logOut(){
+            methods: {
+                logOut() {
                     localStorage.removeItem('user')
 
-                window.location.href = 'http://localhost:3000/';
+                    window.location.href = 'http://localhost:3000/';
                 },
                 edit(roomId) {
-                    console.log('asdf')
-                    document.getElementById('editPlace').innerHTML = 'asdkfjasdlkf'
+                    // https://stackoverflow.com/questions/2828211/how-can-i-include-special-characters-in-query-strings
 
-                }
+                    // query string
+                    this.roomId = roomId
+                    document.getElementById('editPlace').innerHTML = `
+                    <center>
+
+                    Edit ${roomId}
+                    <br>
+                    Room type :
+                    <select name="room_type" id="room_type">
+                        <option name="signle-bed" value="signle bed"> signle bed</option>
+                        <option name="double-bed" value="double bed"> double bed</option>
+                        <option name="triple-bed" value="triple bed"> triple bed</option>
+                        <option name="twin-bed" value="twin bed"> twin bed</option>
+                    </select>
+                    <br>
+                    Room description : <br>
+                    <textarea name="room_description" rows="auto" cols="50"></textarea>
+                    <br>
+                    Room service : <br>
+                    <textarea name="room_service" rows="auto" cols="50"></textarea>
+                    <br>
+                    Price : <input type="number" name="price">
+                    <a><button type='submit'>confirm edit</button></a>
+
+                    </center>
+
+                    `
+
+                },
             }
         })
     </script>
+
 </body>
 
 </html>

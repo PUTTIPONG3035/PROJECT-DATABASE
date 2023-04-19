@@ -27,6 +27,29 @@ router.post("/login", async function (req, res, next) {
 });
 
 
+
+
+
+
+
+// edit room
+// router.get("/editRoom/:data/:roomId", async function (req, res, next) {
+//   // res.render('admin', { editRoom: JSON.stringify(req.params.data) })
+//   res.redirect('/editRoom/:data/:roomId')
+// })
+router.post("/editRoom/:data/:roomId", async function (req, res, next) {
+  console.log(JSON.parse(req.params.data))
+  const room_type = req.params.data.split(' ')[0]
+  const rppm_description = req.params.data.split(' ')[1]
+  const room_service = req.params.data.split(' ')[2]
+  const price = req.params.data.split(' ')[3]
+  await pool.query('update room set room_type = ?, room_description = ?, room_service = ?, price = ? where room_id = ?',
+    [room_type, rppm_description, room_service, price, req.params.roomId])
+    console.log("asdfklasdjflkajsdfkljasdf;laskdfasdfjklasdfjklasdjfklasjdfkl")
+  res.redirect('/admin#allroom')
+})
+
+
 //payment
 router.get("/payment/:name", async function (req, res, next) {
   console.log(req.params.name.split(' '))
@@ -116,8 +139,26 @@ router.post("/signup", async function (req, res, next) {
 router.get("/admin", async function (req, res, next) {
   const [reports, feilds2] = await pool.query("select * from report")
   const [rooms, feilds3] = await pool.query("select * from room")
-  res.render('admin', { reports: JSON.stringify(reports), rooms: JSON.stringify(rooms) })
+  const [roomsEdit, feilds4] = await pool.query("select * from room where room_id = 'r001'")
+  res.render('admin', {
+    reports: JSON.stringify(reports),
+    rooms: JSON.stringify(rooms),
+    editRoom: JSON.stringify(roomsEdit) })
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //profile
 router.get("/profile", async function (req, res, next) {
@@ -158,7 +199,7 @@ router.get("/bookingOrder", async function (req, res, next) {
   const [booking_order, feilds] = await pool.query("select * from booking")
   const [booking, feilds1] = await pool.query("select * from booking join payments using(payment_id)")
   console.log(booking_order)
-  res.render('booking_order', { booking_order : JSON.stringify(booking) })
+  res.render('booking_order', { booking_order: JSON.stringify(booking) })
 });
 
 // cancel booking order
