@@ -28,6 +28,18 @@
             font-size: 13px;
             color: black;
         }
+
+        label {
+            color: black;
+        }
+
+        .edit {
+            width: 50%;
+        }
+
+        .form-label {
+            float: left;
+        }
     </style>
 
 </head>
@@ -133,8 +145,6 @@
         </section>
         <!-- End Hero Area -->
 
-        {{ editRoom }}
-
         <!-- Start Pricing Table Area -->
         <section id="allroom" class="pricing-table section">
             <div class="container">
@@ -161,7 +171,7 @@
                                     <h2 class="amount">THB {{room.price}}<span class="duration">/day</span></h2>
                                 </div>
                                 <div class="button">
-                                    <a class="btn" @click="edit(room.room_id)">Edit data</a>
+                                    <a class="btn" @click="edit(room.room_id)" href="#allroom">Edit data</a>
                                 </div>
                             </div>
                             <div class="table-content">
@@ -315,7 +325,7 @@
                 editRoom: JSON.parse('<%- editRoom %>'),
                 reports: JSON.parse('<%- reports %>'),
                 allroom: JSON.parse('<%- rooms %>'),
-                roomId: ''
+                roomId: '',
             },
 
             methods: {
@@ -326,39 +336,50 @@
                 },
                 edit(roomId) {
                     // https://stackoverflow.com/questions/2828211/how-can-i-include-special-characters-in-query-strings
-
                     // query string
                     this.roomId = roomId
                     document.getElementById('editPlace').innerHTML = `
                     <center>
+                        <div class="edit">
 
-                    Edit ${roomId}
+                    <h4>Edit ${roomId}</h4>
                     <br>
-                    Room type :
-                    <select name="room_type" id="room_type">
+                    <label class="form-label">Room type :</label>
+
+                    <select class="form-select" name="room_type" id="room_type">
                         <option name="signle-bed" value="signle bed"> signle bed</option>
                         <option name="double-bed" value="double bed"> double bed</option>
                         <option name="triple-bed" value="triple bed"> triple bed</option>
                         <option name="twin-bed" value="twin bed"> twin bed</option>
                     </select>
                     <br>
-                    Room description : <br>
-                    <textarea name="room_description" rows="auto" cols="50"></textarea>
+                    <label class="form-label">Room description : </label>
                     <br>
-                    Room service : <br>
-                    <textarea name="room_service" rows="auto" cols="50"></textarea>
+                    <textarea class="form-control" name="room_description" rows="auto" cols="50"></textarea>
                     <br>
-                    Price : <input type="number" name="price">
-                    <a><button type='submit'>confirm edit</button></a>
+                    <label class="form-label">Room service : </label>
+                    <br>
+                    <textarea  class="form-control"name="room_service" rows="auto" cols="50"></textarea>
+                    <br>
+                    <label class="form-label">Price : </label>
+                    <input class="form-control" type="number" name="price">
+                    <br>
+                    <a><button class="btn btn-primary" type='submit'>confirm edit</button></a>
+                    <button class="btn btn-danger" onclick="cancelEdit()">Cancel</button>
 
-                    </center>
-
-                    `
+                    </div>
+                    </center>`
 
                 },
             }
         })
+
+        function cancelEdit() {
+            document.getElementById('editPlace').innerHTML = ''
+        }
     </script>
+
+
 
 </body>
 

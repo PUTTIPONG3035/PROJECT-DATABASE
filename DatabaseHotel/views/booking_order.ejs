@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/css/glightbox.min.css" />
     <link rel="stylesheet" href="/css/main.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+
     <style>
         .container {
             margin-top: 100px;
@@ -62,7 +64,7 @@
                     <td> </td>
                 </tr>
                 <tbody class="has-background-light subtitle" v-for="item in history" :key="item">
-                    <tr>
+                    <tr :id="item.booking_id">
                         <td>{{ item.booking_id }}</td>
                         <td>{{ item.customer_id }}</td>
                         <td>{{ item.name }}</td>
@@ -73,9 +75,12 @@
                         <td>{{ item.booking_date.split("T")[0] + ' ('+ item.booking_date.substring(12, 19) + ')'}}</td>
                         <td>{{ item.payment_id }}</td>
                         <td v-if="item.payment_state == 'incomplete'" style="color: red">{{ item.payment_state }}</td>
-                        <td v-else="item.payment_state == 'incomplete'" style="color: green">{{ item.payment_state }}</td>
-                        <td> <button style="border-radius: 5px;" @click="edit(item.booking_id)"> Edit </button>
-                            <button style="border-radius: 5px;" @click="cancel(item.booking_id)"> cancel </button>
+                        <td v-else="item.payment_state == 'incomplete'" style="color: green">{{ item.payment_state }}
+                        </td>
+                        <td> <button style="border-radius: 5px;" @click="edit(item)"
+                                class="btn btn-outline-secondary btn-sm"> Edit </button>
+                            <button style="border-radius: 5px;" @click="cancel(item.booking_id)"
+                                class="btn btn-danger btn-sm"> cancel </button>
                         </td>
 
                     </tr>
@@ -115,6 +120,7 @@
             el: '#orders',
             data: {
                 history: JSON.parse('<%- booking_order %>'),
+                price : 0
             },
             methods: {
                 cancel(bookingId) {
@@ -124,6 +130,48 @@
                     } else {
                         window.location.href = 'http://localhost:3000/bookingOrder'
                     }
+                }, edit(booking) {
+                    document.getElementById(booking.booking_id).innerHTML = `
+                    <td>${booking.booking_id}</td>
+                    <td>${booking.customer_id}</td>
+                    <td>${booking.name}</td>
+                    <td><input class="form-control" type="text" name="room_id" value="${booking.room_id}"></td>
+                    <td><input class="form-control" type="date" name="check_in" value="${booking.check_in}"></td>
+                    <td><input class="form-control" type="date" name="check_out" value="${booking.check_out}"></td>
+                    <td><input class="form-control" type="number" name="room_id" value="${booking.price}" v-model='price'></td>
+                    <td>${booking.booking_date}</td>
+                    <td>${booking.payment_id}</td>
+                    <td>${booking.payment_state}</td>
+                    <td>
+                        <button onclick="confirmEdit(${booking})" class="btn btn-outline-success btn-sm"> confirm </button>
+                        <button onclick="cancelEdit(${booking})" class="btn btn-outline-danger btn-sm"> cancel </button>
+                        </td>
+                    `
+                },
+                confirmEdit() {
+                    console.log("confirm")
+                },
+                cancelEdit(item) {
+                    console.log("alksdfaskldfjklasdfj")
+                    document.getElementById(item.booking_id).innerHTML = `
+                        <td>${item.booking_id}</td>
+                        <td>${item.customer_id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.room_id}</td>
+                        <td>${item.check_in.split("T")[0]}</td>
+                        <td>${item.check_out.split("T")[0]}</td>
+                        <td>${item.price}</td>
+                        <td>${item.booking_date.split("T")[0] + ' (' + item.booking_date.substring(12, 19) + ')'}}</td>
+                        <td>${item.payment_id}</td>
+                        <td v-if="item.payment_state == 'incomplete'" style="color: red">${item.payment_state}</td>
+                        <td v-else="item.payment_state == 'incomplete'" style="color: green">${item.payment_state}
+                        </td>
+                        <td> <button style="border-radius: 5px;" @click="edit(item)"
+                                class="btn btn-outline-secondary btn-sm"> Edit </button>
+                            <button style="border-radius: 5px;" @click="cancel(item.booking_id)"
+                                class="btn btn-danger btn-sm"> cancel </button>
+                        </td>
+                    `
                 }
             }
         })
