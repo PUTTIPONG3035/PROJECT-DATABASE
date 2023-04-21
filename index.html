@@ -18,6 +18,30 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -88,7 +112,7 @@
                                 <a href="signup.html" class="btn">Sign-up</a>
                             </div>
                             <div class="button add-list-button">
-                                <a href="adminlogin.html" class="btn" >admin</a>
+                                <a href="adminlogin.html" class="btn">admin</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
@@ -117,7 +141,8 @@
                 </div>
                 <div class="col-lg-7 col-md-12 col-12">
                     <div class="hero-image wow fadeInRight" data-wow-delay=".4s">
-                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o=" alt="#">
+                        <img src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/184305239.jpg?k=4dbc2549dfba179004f2acdacceb65c7fb501f88823274ceb8397bde485209b7&o="
+                            alt="#">
                     </div>
                 </div>
             </div>
@@ -125,6 +150,15 @@
     </section>
     <!-- End Hero Area -->
 
+
+    <div class="container">
+        <div id='zxcv' class='loader' ></div>
+
+        asdklfjklasdjfklasjdfkljasdfkljaskldfjklasdf
+        <button onclick="asdf()">
+            asdf
+        </button>
+    </div>
     <!-- Start Features Area -->
     <section id="features" class="features section">
         <div class="container">
@@ -377,6 +411,14 @@
             append: " ",
         });
         cu.start();
+
+        function asdf() {
+            console.log('asdfadfasdf')
+            const loader = document.querySelector(".loader");
+            loader.className += " hidden";
+        }
+        // window.addEventListener("load", function () {
+        // });
     </script>
 </body>
 
