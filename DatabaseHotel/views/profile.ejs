@@ -21,6 +21,10 @@
 </head>
 
 <body>
+
+    <div id="profile">
+
+
     <!--[if lte IE 9]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
@@ -48,7 +52,7 @@
                     <div class="nav-inner">
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html" style="color:white">
+                            <a class="navbar-brand" href="/" style="color:white">
                                 <b style="font-size: larger;"> Hotel </b>
                                 <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
                             </a>
@@ -69,26 +73,23 @@
                                         <a href="#booking" class="page-scroll"
                                             aria-label="Toggle navigation">Booking</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-4" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">report</a>
-                                        <ul class="sub-menu collapse" id="submenu-1-4">
+                                        <ul class="sub-menu collapse" id="submenu-1-4"> -->
                                             <!-- loop report table -->
-                                            <li class="nav-item"><a href="javascript:void(0)">Blog Grid Sidebar</a>
+                                            <!-- <li class="nav-item"><a href="javascript:void(0)">Blog Grid Sidebar</a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="button add-list-button">
-                                <a href="login.html" class="btn">Log-in</a>
+                                {{bookings[0].first_name + ' ' + bookings[0].last_name}}
                             </div>
                             <div class="button add-list-button">
-                                <a href="signup.html" class="btn">Sign-up</a>
-                            </div>
-                            <div class="button add-list-button">
-                                <a href="adminlogin.html" class="btn" >admin</a>
+                                <a @click="logOut()" class="btn">Log-out</a>
                             </div>
                         </nav>
                         <!-- End Navbar -->
@@ -105,8 +106,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-5 col-md-12 col-12">
                     <div class="hero-content">
-                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">HOTEL's INFORMATION</h1>
-                        <p class="wow fadeInLeft" data-wow-delay=".6s">Get information, booking and management system
+                        <h1 class="wow fadeInLeft" data-wow-delay=".4s">Welcome</h1>
+                        <p class="wow fadeInLeft" data-wow-delay=".6s">
                         </p>
                         <!-- <div class="button wow fadeInLeft" data-wow-delay=".8s">
                             <a href="javascript:void(0)" class="btn"><i class="lni lni-apple"></i> App Store</a>
@@ -126,7 +127,7 @@
     <!-- End Hero Area -->
 
     <!-- Start Features Area -->
-    <section id="features" class="features section">
+    <!-- <section id="features" class="features section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -140,41 +141,41 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-4 col-md-6 col-12"> -->
                     <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
+                    <!-- <div class="single-feature wow fadeInUp" data-wow-delay=".2s">
                         <i class="lni lni-service"></i>
                         <h3>Breakfast</h3>
                         <p>asdklfjklasdjfklasjdfkljasdfkljaskldfjklasdf</p>
-                    </div>
+                    </div> -->
                     <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
+                <!-- </div>
+                <div class="col-lg-4 col-md-6 col-12"> -->
                     <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
+                    <!-- <div class="single-feature wow fadeInUp" data-wow-delay=".4s">
                         <i class="lni lni-car"></i>
                         <h3>Park</h3>
                         <p>asdfasdfsadf</p>
-                    </div>
+                    </div> -->
                     <!-- End Single Feature -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
+                <!-- </div>
+                <div class="col-lg-4 col-md-6 col-12"> -->
                     <!-- Start Single Feature -->
-                    <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
+                    <!-- <div class="single-feature wow fadeInUp" data-wow-delay=".6s">
                         <i class="lni lni-dumbbell"></i>
                         <h3>fitness</h3>
                         <p>asdfasdfasdfasdf</p>
-                    </div>
+                    </div> -->
                     <!-- End Single Feature -->
-                </div>
+                <!-- </div>
 
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Features Area -->
 
     <!-- Start Achievement Area -->
-    <section class="our-achievement section">
+    <!-- <section class="our-achievement section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
@@ -209,7 +210,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Achievement Area -->
 
     <!-- Start Pricing Table Area -->
@@ -220,37 +221,58 @@
                     <div class="section-title">
                         <h3 class="wow zoomIn" data-wow-delay=".2s">Our Room</h3>
                         <h2 class="wow fadeInUp" data-wow-delay=".4s">information's room</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">ฟหกสดส้หฟ่ากด้ฟหา ฟหกด้่าฟหกด ฟหกด้ฟห่กาด้ฟ่าหกด
-                            ฟหกด่ฟหกาด้
-                            ฟหกส่ด่ฟ้หาก่ด้าฟหก้ด ฟหกด้ฟหา่กด ฟหกาด้่ฟ่หาก้ด
+                        <p class="wow fadeInUp" data-wow-delay=".6s">{{yesbooking}}
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
+            <div class="row" v-if="yesbooking == 'check'">
+                <div class="col-lg-3 col-md-6 col-12" v-for="booking in bookings">
                     <!-- Single Table -->
                     <div class="single-table wow fadeInUp" data-wow-delay=".2s">
                         <!-- Table Head -->
                         <div class="table-head">
-                            <h4 class="title">room name</h4>
-                            <p>description room</p>
+                            <h4 class="title">{{booking.room_type}}</h4>
+                            <p>{{booking.room_description}}</p>
                             <div class="price">
-                                <h2 class="amount">THB price room<span class="duration">/day</span></h2>
+                                <h2 class="amount">THB {{booking.price}}<span class="duration">/day</span></h2>
                             </div>
-                            <div class="button">
-                                <a href="booking.html" class="btn">Booking Now</a>
+                             
+                            <div class="bg-success rounded-pill text-center" v-if="booking.payment_state == 'complete'">
+                                <a class="btn text-light ">Complete</a>
+                            </div>
+                            <div class="bg-danger rounded-pill text-center" v-if="booking.payment_state == 'incomplete'">
+                                <a href="" class="btn text-light ">Incomplete</a>
                             </div>
                         </div>
                         <div class="table-content">
-                            <h4 class="middle-title">What's Included</h4>
+                            <h4 class="middle-title">Service</h4>
                             <ul class="table-list">
                                 <!-- loop facility -->
-                                <li><i class="lni lni-checkmark-circle"></i> Cras justo odio.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Dapibus ac facilisis in.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Morbi leo risus.</li>
-                                <li><i class="lni lni-checkmark-circle"></i> Potenti felis, in cras ligula.</li>
+                                <div v-if="booking.room_service.length == 15">
+                                    <li><i class="lni lni-checkmark-circle"></i> {{booking.room_service.split(",")[0]}}
+                                    </li>
+                                    <li><i class="lni lni-checkmark-circle"></i> {{booking.room_service.split(",")[1]}}
+                                    </li>
+                                </div>
+                                <div v-else>
+                                    <li><i class="lni lni-checkmark-circle"></i> {{booking.room_service.split(",")[0]}}
+                                    </li>
+                                </div>
                             </ul>
+                        </div>
+                        <div class="table-content">
+                            <h4 class="middle-title">Date</h4>
+                            
+                                <!-- loop facility -->
+                                    <p class="title">Check IN :  {{booking.check_in.split('T')[0]}} </p>
+                                    <p>Check OUT :   {{booking.check_out.split('T')[0]}} </p>
+                        </div>
+                        <div class="table-content  text-center">
+                            <hr>
+                      
+                                <button class="btn btn-danger" @click="cancel(booking.booking_id, booking.customer_id)"> cancel </button>
+                          
                         </div>
                     </div>
                 </div>
@@ -269,10 +291,10 @@
                         <div class="single-footer f-about">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="assets/images/logo/white-logo.svg" alt="#">
+                                    <img src="/images/logo/white-logo.svg" alt="#">
                                 </a>
                             </div>
-                            <p>Making the world a better place through constructing elegant hierarchies.</p>
+                            <p>Alway make you happy by providing the best option for you</p>
                             <ul class="social">
                                 <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
                                 <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
@@ -281,72 +303,64 @@
                                 <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
                                 <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
                             </ul>
-                            <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
-                                    rel="nofollow" target="_blank">UIdeck</a>
-                            </p>
+                            <!-- <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
+                                rel="nofollow" target="_blank">UIdeck</a>
+                        </p> -->
                         </div>
                         <!-- End Single Widget -->
                     </div>
-                    <div class="col-lg-8 col-md-8 col-12">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Solutions</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Marketing</a></li>
-                                        <li><a href="javascript:void(0)">Analytics</a></li>
-                                        <li><a href="javascript:void(0)">Commerce</a></li>
-                                        <li><a href="javascript:void(0)">Insights</a></li>
-                                        <li><a href="javascript:void(0)">Promotion</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
+                    <!-- <div class="col-lg-8 col-md-8 col-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-footer f-link">
+                                <h3>Solutions</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Marketing</a></li>
+                                    <li><a href="javascript:void(0)">Analytics</a></li>
+                                    <li><a href="javascript:void(0)">Commerce</a></li>
+                                    <li><a href="javascript:void(0)">Insights</a></li>
+                                    <li><a href="javascript:void(0)">Promotion</a></li>
+                                </ul>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Support</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Pricing</a></li>
-                                        <li><a href="javascript:void(0)">Documentation</a></li>
-                                        <li><a href="javascript:void(0)">Guides</a></li>
-                                        <li><a href="javascript:void(0)">API Status</a></li>
-                                        <li><a href="javascript:void(0)">Live Support</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-footer f-link">
+                                <h3>Support</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Pricing</a></li>
+                                    <li><a href="javascript:void(0)">Documentation</a></li>
+                                    <li><a href="javascript:void(0)">Guides</a></li>
+                                    <li><a href="javascript:void(0)">API Status</a></li>
+                                    <li><a href="javascript:void(0)">Live Support</a></li>
+                                </ul>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Company</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">About Us</a></li>
-                                        <li><a href="javascript:void(0)">Our Blog</a></li>
-                                        <li><a href="javascript:void(0)">Jobs</a></li>
-                                        <li><a href="javascript:void(0)">Press</a></li>
-                                        <li><a href="javascript:void(0)">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-footer f-link">
+                                <h3>Company</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">About Us</a></li>
+                                    <li><a href="javascript:void(0)">Our Blog</a></li>
+                                    <li><a href="javascript:void(0)">Jobs</a></li>
+                                    <li><a href="javascript:void(0)">Press</a></li>
+                                    <li><a href="javascript:void(0)">Contact Us</a></li>
+                                </ul>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer f-link">
-                                    <h3>Legal</h3>
-                                    <ul>
-                                        <li><a href="javascript:void(0)">Terms & Conditions</a></li>
-                                        <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                                        <li><a href="javascript:void(0)">Catering Services</a></li>
-                                        <li><a href="javascript:void(0)">Customer Relations</a></li>
-                                        <li><a href="javascript:void(0)">Innovation</a></li>
-                                    </ul>
-                                </div>
-                                <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="single-footer f-link">
+                                <h3>Legal</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Terms & Conditions</a></li>
+                                    <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                                    <li><a href="javascript:void(0)">Catering Services</a></li>
+                                    <li><a href="javascript:void(0)">Customer Relations</a></li>
+                                    <li><a href="javascript:void(0)">Innovation</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div> -->
                 </div>
             </div>
         </div>
@@ -358,6 +372,7 @@
     <a href="#" class="scroll-top">
         <i class="lni lni-chevron-up"></i>
     </a>
+</div>
 
     <!-- ========================= JS here ========================= -->
     <script src="/js/bootstrap.min.js"></script>
@@ -377,6 +392,26 @@
             append: " ",
         });
         cu.start();
+
+        var app = new Vue({
+            el: '#profile',
+            data :{
+                  bookings : JSON.parse('<%- booking %>'),
+                  yesbooking : JSON.parse('<%- yesbooking %>')
+            },
+            methods :{
+                logOut() {
+                    localStorage.removeItem('user')
+                    window.location.href = 'http://localhost:3000/';
+
+                },
+                cancel(bookingId, customerId){
+                    if(confirm('cancel' + bookingId) == true){
+                        window.location.href = `http://localhost:3000/profile/delete/${bookingId} ${customerId}`
+                    }
+                }
+            }
+        })
     </script>
 </body>
 

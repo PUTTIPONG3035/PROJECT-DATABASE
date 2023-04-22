@@ -53,12 +53,12 @@ router.post("/editRoom/:data/:roomId", async function (req, res, next) {
 //payment
 router.get("/payment/:name", async function (req, res, next) {
   console.log(req.params.name.split(' '))
-  res.render('payment', { name: JSON.stringify(req.params.name) })
+  res.render('payment', { name : JSON.stringify(req.params.name), check : JSON.stringify(''), done : null})
 });
 
 router.post('/payment/:name', async function (req, res, next) {
-  console.log(req.body)
-  console.log(req.params.name.split(' '))
+  console.log('ค่าที่ส่งมา:' + req.params.name)
+  // console.log(req.params.name.split(' '))
   const checkIn = req.params.name.split(' ')[0]
   const checkOut = req.params.name.split(' ')[1]
   const name = req.params.name.split(' ')[2]
@@ -67,49 +67,53 @@ router.post('/payment/:name', async function (req, res, next) {
   const price = req.params.name.split(' ')[5]
   const via = req.body.checkType
   const viaprice = req.body.number
-  // console.log(req.params.name.split(' ').length)
-
-  if (via == '') {
-    res.send('wrong')
-  }
-  else {
-    let status = ''
-    const conn = await pool.getConnection()
-    // Begin transaction
-    await conn.beginTransaction();
-    if (viaprice == '' || viaprice != price) {
-      status = 'incomplete'
-    }
-    else {
-      status = 'complete'
-    }
-    let p_id = 'p' + Math.floor(Math.random() * 1000)
-    let b_id = 'B00' + Math.floor(Math.random() * 1000)
-    try {
-      const [time, feilds] = await pool.query(`SELECT NOW() as 'date' `)
-      console.log(time[0].date)
-      const results = await conn.query(
-        "INSERT INTO payments(payment_id, via, payment_state, price, customer_id) VALUES (?, ?, ?, ?, ?)",
-        [p_id, via, status, price, cusId]
-      )
-      // const paymentId = results[0].insertId;
-
-      await conn.query(
-        "INSERT INTO booking(booking_id, customer_id, name, room_id, check_in, check_out, price, payment_id, booking_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        [b_id, cusId, name, roomId, checkIn, checkOut, price, p_id, time[0].date])
-
-      await conn.commit()
-      // res.send("sucess")
-      res.redirect('/')
-
-    } catch (err) {
-      await conn.rollback();
-      next(err);
-    } finally {
-      console.log('finally')
-      conn.release();
-    }
-  }
+  const allprice = req.params.name.split(' ')[6]
+  console.log(price)
+    // console.log(req.params.name.split(' ').length)
+      if(via == null ){
+          res.send('wrong')
+      }
+      else{
+        let status = ''
+        const conn = await pool.getConnection()
+        // Begin transaction
+        await conn.beginTransaction();
+        if(viaprice == '' || viaprice != allprice){
+          status = 'incomplete'
+       }
+       else{
+        status = 'complete'
+      }
+      console.log(status)
+       let p_id = 'p' + Math.floor(Math.random() * 1000)
+       let b_id = 'B00' + Math.floor(Math.random() * 1000)
+        try {
+          const [time, feilds] = await pool.query(`SELECT NOW() as 'date' `)
+          console.log(time[0].date)
+          await conn.query(
+            "INSERT INTO payments(payment_id, via, payment_state, price, customer_id) VALUES (?, ?, ?, ?, ?)",
+            [p_id,via,  status, price, cusId]
+          )
+          // const paymentId = results[0].insertId;
+      
+          await conn.query(
+            "INSERT INTO booking(booking_id, customer_id, name, room_id, check_in, check_out, price, payment_id, booking_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [b_id, cusId, name, roomId, checkIn, checkOut, allprice, p_id, time[0].date])
+      
+          await conn.commit()
+          // console.log(conn)
+          // res.send("sucess")
+          res.render(`payment`, {check : JSON.stringify('success'), name : JSON.stringify(''), done : true})
+          // res.redirect('/')
+        
+        } catch (err) {
+          await conn.rollback();
+          next(err);
+        } finally {
+          console.log('finally')
+          conn.release();
+        }
+      }
 })
 
 //sign up
@@ -124,7 +128,7 @@ router.post("/signup", async function (req, res, next) {
   console.log(email)
   const [Srows, Sfeilds] = await pool.query('SELECT email FROM  customers where email = ?', [email])
   console.log(Srows)
-  if (Srows.length > 1) {
+  if (Srows.length > 0) {
     res.render('signup', { error: 'Email ซ้ำนะไอสาส' })
   }
 
@@ -161,8 +165,21 @@ router.get("/admin", async function (req, res, next) {
 
 
 //profile
-router.get("/profile", async function (req, res, next) {
-  res.render('profile', { folks: 'folk' })
+router.get("/profile/:id", async function (req, res, next) {
+  console.log(req.params.id)
+  const [booking, feilds] = await pool.query('SELECT * FROM booking join room using(room_id) join customers c using(customer_id) join payments using(payment_id) WHERE c.customer_id = ?', [req.params.id])
+  console.log(booking)
+  if(booking == ''){
+    const [yesbooking, feild1] = await pool.query('SELECT customer_id FROM booking WHERE ? in (customer_id)', [booking.customer_id])
+    const [nobooking, feild2] = await pool.query('SELECT * FROM customers WHERE customer_id = ?', [req.params.id])
+    console.log(nobooking)
+    console.log(yesbooking)
+    res.render('profile', {booking : JSON.stringify(nobooking), yesbooking : JSON.stringify(yesbooking)})
+  }
+  else{
+    console.log('booking')
+    res.render('profile', { booking : JSON.stringify(booking), yesbooking : JSON.stringify('check') })
+  }
 });
 
 //booking
@@ -177,19 +194,40 @@ router.get("/booking/:id", async function (req, res, next) {
 router.post('/booking/:id', async function (req, res, next) {
   console.log(req.params.id.split(' ')[1])
   const roomId = req.params.id.split(' ')[1]
+  const{checkIn, checkOut, fname} = req.body
   const [rooms, feilds] = await pool.query("select * from room where room_id = ?", [roomId])
-  // console.log(req.body)
-  const { checkIn, checkOut, fname } = req.body
-  if (checkIn == '' || checkOut == '' || fname == '') {
-    res.render('booking', { msg: 'กรุณากรอกข้อมูลให้ครบ', rooms: JSON.stringify(rooms) })    // res.redirect(`/booking/${req.params.id.split(' ')[1]}`)
-  }
-  else {
 
-    if (checkIn > checkOut) {
-      res.render('booking', { msg: 'กรอกเวลาผิด', rooms: JSON.stringify(rooms) })
+
+  // console.log(req.body)
+  
+
+  if(checkIn == '' || checkOut == '' || fname == ''){
+    res.render('booking', {msg : 'กรุณากรอกข้อมูลให้ครบ', rooms : JSON.stringify(rooms)})    // res.redirect(`/booking/${req.params.id.split(' ')[1]}`)
+  }
+  else{
+    const [vacancy, feild1] = await pool.query('select * from booking where ( ? between check_in and  check_out or ? between  check_in and check_out) and room_id = ? ', [checkIn, checkOut, roomId])
+    const [unavailabel, feild2] = await pool.query("select * from unavilable_room where (date = ? or date = ?) and  room_id = ?", [checkIn, checkOut, roomId])
+    console.log('vacancy : ' + vacancy.length)
+    console.log('unvailabel : ' + unavailabel.length)
+    if(checkIn > checkOut){
+       res.render('booking', {msg : 'กรอกเวลาผิด', rooms : JSON.stringify(rooms)})
     }
-    else {
-      res.redirect(`/payment/${checkIn} ${checkOut} ${fname} ${req.params.id.split(' ')[0]} ${req.params.id.split(' ')[1]} ${req.params.id.split(' ')[2]}`)
+
+    else if(vacancy.length > 0){
+      res.render('booking', {msg: 'ห้องเต็ม', rooms : JSON.stringify(rooms) })
+    }
+
+    else if(unavailabel.length > 0){
+      res.render('booking', {msg: 'ห้องยังไม่พร้อมให้ใช้งาน', rooms : JSON.stringify(rooms) })
+    }
+
+    else{
+      const [countRooms, feild1] = await pool.query('SELECT DATEDIFF( ? , ?) AS date', [checkOut, checkIn])
+      console.log(countRooms)
+      const allprice = parseInt(req.params.id.split(' ')[2]) * parseInt(countRooms[0].date)
+      console.log('allprice : ' + allprice)
+      // res.render('payment', {allprice : allprice})
+      res.redirect(`/payment/${checkIn} ${checkOut} ${fname} ${req.params.id.split(' ')[0]} ${req.params.id.split(' ')[1]} ${req.params.id.split(' ')[2]} ${allprice}`)
     }
   }
 })
@@ -228,6 +266,19 @@ router.post("/adminlogin", async function (req, res, next) {
     res.render('adminlogin', { msg: 'email และ password ผิด', emp: JSON.stringify('') })
   }
 });
+
+router.get("/profile/delete/:bookingId", async function (req, res, next){
+  console.log(req.params.bookingId.split(' ')[0])
+
+  // confirm('Press a button')
+  try{
+    const[deleteRoom, feild] = await pool.query('DELETE FROM booking WHERE booking_id = ?', [req.params.bookingId.split(' ')[0]])
+    // res.render('profile', {booking : JSON.stringify(booking), yesbooking : JSON.stringify('check') })
+    res.redirect(`/profile/${req.params.bookingId.split(' ')[1]}`)
+  }catch(err){
+    console.log(err)
+  }
+})
 
 
 exports.router = router;

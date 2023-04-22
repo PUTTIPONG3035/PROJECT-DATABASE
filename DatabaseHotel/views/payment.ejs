@@ -42,15 +42,39 @@
                  </div>
              </div>
              <br>
+             <label for="">จำนวนเงินที่ต้องโอน</label>
+             <div>
+                <div class="select" style="margin-top: 10px">
+                    <select style="width: 230px">
+                        <option :value="name.split(' ')[6]">{{name.split(' ')[6]}}</option>
+                    </select>
+                </div>
+            </div>
+             <br>
              <label for="">จำนวนเงินที่โอน</label>
              <div>
-                 <input type="number" v-model="number" class="input" style="width: 230px; margin-top: 10px" name="number" />
+                 <input type="number" v-model="number" class="input" style="width: 230px; margin-top: 10px" name="number" />{{number}}
              </div>
              <br>
+          
              <a> <button class="button has-background-danger is-normal is-rounded" type="submit">Next</button> </a>
          </div>
      </form>
         <div class="column"></div>
+        <div class="columns">
+         
+            <div :class="{modal: modal, 'is-active':done, 'column' : true}">
+                <div class="modal-background"></div>
+                <div class="box  modal-content column is-one-quarter">
+                    <div class="field">
+                        <label class="label has-text-centered">จองเรียบร้อย</label>
+                    </div>
+        
+                    <a href="http://localhost:3000/"><button class="button is-success">OK</button></a>
+                </div>
+        
+            </div>
+        </div>
     </div>
 
     <script>
@@ -58,9 +82,14 @@
            el: '#payment',
            data :{
                  name : JSON.parse('<%- name %>'),
+                 check : JSON.parse('<%- check %>'),
+                 done : '<%- done %>',
                  checkType : '',
-                 number : ''
+                 number : '',
+                 isActive_Done : false,
+                modal : true
            }
+           
        })
    </script>
 </body>

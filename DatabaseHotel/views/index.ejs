@@ -75,7 +75,10 @@
                                 </div> <!-- navbar collapse -->
                                 <div class="button add-list-button" v-if="is_ActiveLogin == true">
                                     <a href="http://localhost:3000/login" class="btn">Log-in</a>
+                                </div>
 
+                                <div class="button add-list-button" v-if="is_ActiveProfile == true">
+                                    <a :href="'/profile/' + local" class="btn">Profile</a>
                                 </div>
                                 <div class="button add-list-button" v-if="is_ActiveLogout == true">
                                     <!-- <a :href="'http://localhost:3000/profile/' + local" class="btn">Profile {{local}}</a> -->
@@ -257,9 +260,9 @@
                                         <li><i class="lni lni-checkmark-circle"></i> {{room.room_service.split(",")[0]}}
                                         </li>
                                     </div>
-
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -389,6 +392,7 @@
                 is_AcitveAdmin: true,
                 is_AcitveSignUp: true,
                 is_ActiveAdmin: false,
+                is_ActiveProfile : false,
                 local: '',
             
             },
@@ -408,6 +412,7 @@
                     }
 
                     else {
+                        this.is_ActiveProfile = true
                         this.is_ActiveLogin = false
                         this.is_ActiveLogout = true
                         this.is_AcitveAdmin = false
@@ -423,8 +428,15 @@
 
                 },
                 booking(roomId){
+              
                     if(localStorage.getItem('user') != null){
-                        window.location.href = `http://localhost:3000/booking/${roomId}`
+                        let id = JSON.parse(localStorage.getItem('user'))[0].id;
+                        if(id < 100){
+                            window.location.href = 'http://localhost:3000/login'
+                        }
+                        else{
+                            window.location.href = `http://localhost:3000/booking/${roomId}`
+                        }
                     }
                     else{
                         window.location.href = 'http://localhost:3000/login'
