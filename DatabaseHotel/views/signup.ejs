@@ -102,8 +102,8 @@
                                 <td><input type="password" name="password" placeholder="******" /required></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <%= error %>
+                                <td class="text-danger">
+                                   {{err}}
                                 </td>
                             </tr>
 
@@ -137,6 +137,7 @@
         //====== counter up
         var cu = new counterUp({
             start: 0,
+           
             duration: 2000,
             intvalues: true,
             interval: 100,
@@ -150,12 +151,25 @@
 
             data: {
                 fname: '',
+                err : JSON.parse('<%- error %>'),
                 lname: '',
                 tel: '',
                 email: '',
                 password: '',
 
             },
+
+            created(){
+                console.log(this.err)
+                if(this.err == 'done'){
+                    // console.log('folk')
+                    alert('ลงทะเบียนสำเร็จ')
+                    window.location.href = 'http://localhost:3000/login'
+                }
+                else{
+                    console.log('folk')
+                }
+            }
         })
     </script>
 </body>

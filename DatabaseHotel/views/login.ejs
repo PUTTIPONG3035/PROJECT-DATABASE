@@ -184,8 +184,9 @@
             created(){
                 // console.log(this.cus[0].email)
                 if(this.cus != ''){
-                    localStorage.setItem('user', JSON.stringify([{email : this.cus[0].email, password: this.cus[0].password, id : this.cus[0].customer_id}]))
+                    localStorage.setItem('user', JSON.stringify([{email : this.cus[0].email, password: this.cus[0].password, id : this.cus[0].customer_id}]))             
                     window.location.href = 'http://localhost:3000/';
+                    alert('ล็อคอิน สำเร็จ')
                     console.log('folk')
                 }
 

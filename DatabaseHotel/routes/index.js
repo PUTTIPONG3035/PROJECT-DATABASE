@@ -22,7 +22,7 @@ router.post("/login", async function (req, res, next) {
     res.render('login', { cus: JSON.stringify(rows) || JSON.stringify(''), msg: '' })
   }
   else {
-    res.render('login', { msg: 'email และ password ผิด', cus: JSON.stringify('') })
+    res.render('login', { msg: 'email หรือ password ผิด', cus: JSON.stringify('') })
   }
 });
 
@@ -118,7 +118,7 @@ router.post('/payment/:name', async function (req, res, next) {
 
 //sign up
 router.get("/signup", async function (req, res, next) {
-  res.render('signup', { error: '' })
+  res.render('signup', { error: JSON.stringify('') })
 });
 
 router.post("/signup", async function (req, res, next) {
@@ -129,13 +129,13 @@ router.post("/signup", async function (req, res, next) {
   const [Srows, Sfeilds] = await pool.query('SELECT email FROM  customers where email = ?', [email])
   console.log(Srows)
   if (Srows.length > 0) {
-    res.render('signup', { error: 'Email ซ้ำนะไอสาส' })
+    res.render('signup', { error: JSON.stringify('Email ซ้ำ') })
   }
 
   else {
     const [Irows, Ifeilds] = await pool.query('INSERT INTO customers (first_name, last_name, tel, email, password) VALUES (?, ?, ?, ?, ?)', [fname, lname, tel, email, password])
     console.log(Irows)
-    res.redirect('/')
+    res.render('signup', {error : JSON.stringify('done')})
   }
 });
 
@@ -206,7 +206,7 @@ router.post('/booking/:id', async function (req, res, next) {
   }
   else{
     const [vacancy, feild1] = await pool.query('select * from booking where ( ? between check_in and  check_out or ? between  check_in and check_out) and room_id = ? ', [checkIn, checkOut, roomId])
-    const [unavailabel, feild2] = await pool.query("select * from unavilable_room where (date = ? or date = ?) and  room_id = ?", [checkIn, checkOut, roomId])
+    const [unavailabel, feild2] = await pool.query("select * from unavailable_room where (date between ? and  ?) and  room_id = ?", [checkIn, checkOut, roomId])
     console.log('vacancy : ' + vacancy.length)
     console.log('unvailabel : ' + unavailabel.length)
     if(checkIn > checkOut){
