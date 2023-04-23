@@ -95,17 +95,17 @@ router.post('/payment/:name', async function (req, res, next) {
             [p_id,via,  status, price, cusId]
           )
           // const paymentId = results[0].insertId;
-      
+
           await conn.query(
             "INSERT INTO booking(booking_id, customer_id, name, room_id, check_in, check_out, price, payment_id, booking_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [b_id, cusId, name, roomId, checkIn, checkOut, allprice, p_id, time[0].date])
-      
+
           await conn.commit()
           // console.log(conn)
           // res.send("sucess")
           res.render(`payment`, {check : JSON.stringify('success'), name : JSON.stringify(''), done : true})
           // res.redirect('/')
-        
+
         } catch (err) {
           await conn.rollback();
           next(err);
@@ -199,7 +199,7 @@ router.post('/booking/:id', async function (req, res, next) {
 
 
   // console.log(req.body)
-  
+
 
   if(checkIn == '' || checkOut == '' || fname == ''){
     res.render('booking', {msg : JSON.stringify('กรุณากรอกข้อมูลให้ครบ'), rooms : JSON.stringify(rooms)})    // res.redirect(`/booking/${req.params.id.split(' ')[1]}`)
@@ -278,6 +278,11 @@ router.get("/profile/delete/:bookingId", async function (req, res, next){
   }catch(err){
     console.log(err)
   }
+})
+
+
+router.get("/editBooking", async function (req, res, next) {
+
 })
 
 
