@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Appvilla - Creative Landing Page HTML Template.</title>
+    <title>Booking Hotel</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -156,9 +156,9 @@
                     </div>
                 </div>
                 <!-- <form action="editRoom/:{{data}}/:${roomId} " method="POST" id="editPlace"></form> -->
-                <form :action="'/editRoom/' + data + '/' + roomId " method="POST" id="editPlace"></form>
+                <!-- <form :action="'/editRoom/' + data + '/' + roomId " method="POST" id="editPlace"></form> -->
                 <!-- <form action=`editRoom/{{data}}/${roomId} ` method="POST" id="editPlace"></form> -->
-                <!-- <div id="editPlace"></div> -->
+                <div id="editPlace"></div>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-12" v-for="room in allroom">
                         <!-- Single Table -->
@@ -197,6 +197,7 @@
             </div>
         </section>
 
+
         <!-- Start Footer Area -->
         <footer class="footer">
             <!-- Start Footer Top -->
@@ -206,12 +207,7 @@
                         <div class="col-lg-4 col-md-4 col-12">
                             <!-- Single Widget -->
                             <div class="single-footer f-about">
-                                <div class="logo">
-                                    <a href="index.html">
-                                        <img src="/images/logo/white-logo.svg" alt="#">
-                                    </a>
-                                </div>
-                                <p>Making the world a better place through constructing elegant hierarchies.</p>
+                                <p>Alway make you happy by providing the best option for you</p>
                                 <ul class="social">
                                     <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
                                     <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
@@ -220,72 +216,13 @@
                                     <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
                                     <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
                                 </ul>
-                                <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
-                                        rel="nofollow" target="_blank">UIdeck</a>
-                                </p>
+                                <!-- <p class="copyright-text">Designed and Developed by <a href="https://uideck.com/"
+                                    rel="nofollow" target="_blank">UIdeck</a>
+                            </p> -->
                             </div>
                             <!-- End Single Widget -->
                         </div>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <!-- Single Widget -->
-                                    <div class="single-footer f-link">
-                                        <h3>Solutions</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0)">Marketing</a></li>
-                                            <li><a href="javascript:void(0)">Analytics</a></li>
-                                            <li><a href="javascript:void(0)">Commerce</a></li>
-                                            <li><a href="javascript:void(0)">Insights</a></li>
-                                            <li><a href="javascript:void(0)">Promotion</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End Single Widget -->
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <!-- Single Widget -->
-                                    <div class="single-footer f-link">
-                                        <h3>Support</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0)">Pricing</a></li>
-                                            <li><a href="javascript:void(0)">Documentation</a></li>
-                                            <li><a href="javascript:void(0)">Guides</a></li>
-                                            <li><a href="javascript:void(0)">API Status</a></li>
-                                            <li><a href="javascript:void(0)">Live Support</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End Single Widget -->
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <!-- Single Widget -->
-                                    <div class="single-footer f-link">
-                                        <h3>Company</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0)">About Us</a></li>
-                                            <li><a href="javascript:void(0)">Our Blog</a></li>
-                                            <li><a href="javascript:void(0)">Jobs</a></li>
-                                            <li><a href="javascript:void(0)">Press</a></li>
-                                            <li><a href="javascript:void(0)">Contact Us</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End Single Widget -->
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <!-- Single Widget -->
-                                    <div class="single-footer f-link">
-                                        <h3>Legal</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0)">Terms & Conditions</a></li>
-                                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
-                                            <li><a href="javascript:void(0)">Catering Services</a></li>
-                                            <li><a href="javascript:void(0)">Customer Relations</a></li>
-                                            <li><a href="javascript:void(0)">Innovation</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End Single Widget -->
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -364,7 +301,7 @@
                     <label class="form-label">Price : </label>
                     <input class="form-control" type="number" name="price">
                     <br>
-                    <a><button class="btn btn-primary" type='submit'>confirm edit</button></a>
+                    <a><button class="btn btn-primary" onclick="comfirm()">confirm edit</button></a>
                     <button class="btn btn-danger" onclick="cancelEdit()">Cancel</button>
 
                     </div>
@@ -376,6 +313,10 @@
 
         function cancelEdit() {
             document.getElementById('editPlace').innerHTML = ''
+        }
+        function comfirm() {
+            console.log("comfirm")
+            location.reload()
         }
     </script>
 

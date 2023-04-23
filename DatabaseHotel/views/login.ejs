@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Appvilla - Creative Landing Page HTML Template.</title>
+    <title>Booking Hotel</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
@@ -139,7 +139,7 @@
             password : <input type="password" name="password" placeholder="******" /required>
             <br><br>
             <div style="background-color: #FFBABA; border-radius: 10px; width: 40%; margin: auto;" v-if="msg != ''" >
-                <h5 style="color: #D8000C; padding: 10px; text-align: center;" >{{msg}}</h5> 
+                <h5 style="color: #D8000C; padding: 10px; text-align: center;" >{{msg}}</h5>
             </div>
             <br>
 
@@ -187,7 +187,7 @@
             created(){
                 // console.log(this.cus[0].email)
                 if(this.cus != ''){
-                    localStorage.setItem('user', JSON.stringify([{email : this.cus[0].email, password: this.cus[0].password, id : this.cus[0].customer_id}]))             
+                    localStorage.setItem('user', JSON.stringify([{email : this.cus[0].email, password: this.cus[0].password, id : this.cus[0].customer_id}]))
                     window.location.href = 'http://localhost:3000/';
                     alert('ล็อคอิน สำเร็จ')
                     console.log('folk')
