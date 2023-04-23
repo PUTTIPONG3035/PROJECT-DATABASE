@@ -260,7 +260,7 @@ router.post("/adminlogin", async function (req, res, next) {
   const [rows, feilds] = await pool.query('SELECT email, password, emp_id FROM employees WHERE email = ? and password = ?', [req.body.email, req.body.password])
   console.log(rows)
   if (rows.length == 1) {
-    res.render('adminlogin', { emp: JSON.stringify(rows) || JSON.stringify(''), msg: '' })
+    res.render('adminlogin', { emp: JSON.stringify(rows) || JSON.stringify(''), msg: JSON.stringify('') })
   }
   else {
     res.render('adminlogin', { msg: JSON.stringify('email หรือ password ผิด'), emp: JSON.stringify('') })
