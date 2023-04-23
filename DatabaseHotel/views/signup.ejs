@@ -101,14 +101,12 @@
                                 <td>password : </td>
                                 <td><input type="password" name="password" placeholder="******" /required></td>
                             </tr>
-                            <tr>
-                                <td class="text-danger">
-                                   {{err}}
-                                </td>
-                            </tr>
 
                         </table>
-
+                        <br>
+                        <div style="background-color: #FFBABA; width: 20%; border-radius: 10px;" v-if="err != ''">
+                            <h5 style="color: #D8000C; padding: 10px; text-align: center;" >{{err}}</h5> 
+                        </div>
 
                         <br><br>
                         <a><button type="submit">Sign Up</button></a>

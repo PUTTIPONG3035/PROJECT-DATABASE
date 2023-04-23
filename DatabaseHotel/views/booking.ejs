@@ -107,16 +107,21 @@
                 <div class="column"></div>
                 <div class="column"></div>
                 <div class="column"></div>
-                <div class="column text-danger"><%= msg %></div>
                 <div class="column">
-                    <a><button  type="submit" class="button has-background-danger is-normal is-rounded" >Next</button></a>  
+                    <p style="color: #D8000C;background-color: #FFBABA; padding: 10px; text-align: center; border-radius: 10px;" v-if="msg != ''">{{msg}}</p> 
+                </div>
+                <div class="column">
+                    <a><button  type="submit" class="button has-background-danger is-normal is-rounded" >Next</button></a> 
                 </div>
             </div>
         </form>
-        </div>
-        <div class="column"></div>
-
     </div>
+    
+    <div class="column"></div>
+    
+</div>
+
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
     $(function(){
@@ -142,6 +147,7 @@
             data :{
                   rooms : JSON.parse('<%- rooms %>'),
                   roomId : JSON.parse('<%- rooms %>')[0].room_id,
+                  msg : JSON.parse('<%- msg %>'),
                   checkType : '',
                   checkService: '',
                   fname : '',
@@ -149,7 +155,8 @@
                   checkOut : '',
                   prices : JSON.parse('<%- rooms %>')[0].price,
                   user : JSON.parse(localStorage.getItem('user'))[0].id
-            }
+            },
+          
         })
     </script>
 

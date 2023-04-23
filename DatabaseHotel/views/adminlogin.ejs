@@ -74,7 +74,9 @@
                 <br><br>
                 password : <input type="password" name="password" placeholder="******" /required>
                 <br><br>
-                <p class="text-danger"><%= msg %></p>
+                <div style="background-color: #FFBABA; border-radius: 10px; width: 40%; margin: auto;" v-if="msg != ''" >
+                    <h5 style="color: #D8000C; padding: 10px; text-align: center;" >{{msg}}</h5> 
+                </div>
                 <br>
                 <a><button type="submit">login</button></a>
             </form>
@@ -111,6 +113,7 @@
             el: '#adminLog',
             data :{
                   emp : JSON.parse('<%- emp %>'),
+                  msg : JSON.parse('<%- msg %>')
             },
 
             methods :{

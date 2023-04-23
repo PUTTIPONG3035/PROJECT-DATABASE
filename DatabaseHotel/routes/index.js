@@ -11,7 +11,7 @@ router.get("/", async function (req, res, next) {
 
 //login
 router.get("/login", async function (req, res, next) {
-  res.render('login', { msg: '', cus: JSON.stringify('') })
+  res.render('login', { msg: JSON.stringify(''), cus: JSON.stringify('') })
 });
 
 router.post("/login", async function (req, res, next) {
@@ -19,10 +19,10 @@ router.post("/login", async function (req, res, next) {
   const [rows, feilds] = await pool.query('SELECT email, password, customer_id FROM customers WHERE email = ? and password = ?', [req.body.email, req.body.password])
   console.log(rows)
   if (rows.length == 1) {
-    res.render('login', { cus: JSON.stringify(rows) || JSON.stringify(''), msg: '' })
+    res.render('login', { cus: JSON.stringify(rows) || JSON.stringify(''), msg: JSON.stringify('') })
   }
   else {
-    res.render('login', { msg: 'email หรือ password ผิด', cus: JSON.stringify('') })
+    res.render('login', { msg: JSON.stringify('email หรือ password ผิด'), cus: JSON.stringify('') })
   }
 });
 
@@ -188,7 +188,7 @@ router.get("/booking/:id", async function (req, res, next) {
   console.log(roomId)
   const [rooms, feilds] = await pool.query("select * from room where room_id = ?", [roomId])
 
-  res.render('booking', { rooms: JSON.stringify(rooms), msg: '' })
+  res.render('booking', { rooms: JSON.stringify(rooms), msg: JSON.stringify('') })
 });
 
 router.post('/booking/:id', async function (req, res, next) {
@@ -202,7 +202,7 @@ router.post('/booking/:id', async function (req, res, next) {
   
 
   if(checkIn == '' || checkOut == '' || fname == ''){
-    res.render('booking', {msg : 'กรุณากรอกข้อมูลให้ครบ', rooms : JSON.stringify(rooms)})    // res.redirect(`/booking/${req.params.id.split(' ')[1]}`)
+    res.render('booking', {msg : JSON.stringify('กรุณากรอกข้อมูลให้ครบ'), rooms : JSON.stringify(rooms)})    // res.redirect(`/booking/${req.params.id.split(' ')[1]}`)
   }
   else{
     const [vacancy, feild1] = await pool.query('select * from booking where ( ? between check_in and  check_out or ? between  check_in and check_out) and room_id = ? ', [checkIn, checkOut, roomId])
@@ -210,15 +210,15 @@ router.post('/booking/:id', async function (req, res, next) {
     console.log('vacancy : ' + vacancy.length)
     console.log('unvailabel : ' + unavailabel.length)
     if(checkIn > checkOut){
-       res.render('booking', {msg : 'กรอกเวลาผิด', rooms : JSON.stringify(rooms)})
+       res.render('booking', {msg : JSON.stringify('กรอกเวลาผิด'), rooms : JSON.stringify(rooms)})
     }
 
     else if(vacancy.length > 0){
-      res.render('booking', {msg: 'ห้องเต็ม', rooms : JSON.stringify(rooms) })
+      res.render('booking', {msg: JSON.stringify('ห้องเต็ม'), rooms : JSON.stringify(rooms) })
     }
 
     else if(unavailabel.length > 0){
-      res.render('booking', {msg: 'ห้องยังไม่พร้อมให้ใช้งาน', rooms : JSON.stringify(rooms) })
+      res.render('booking', {msg: JSON.stringify('ห้องยังไม่พร้อมให้ใช้งาน'), rooms : JSON.stringify(rooms) })
     }
 
     else{
@@ -249,7 +249,7 @@ router.get("/bookingOrder/cancel/:bookingId", async function (req, res, next) {
 
 
 router.get("/adminlogin", async function (req, res, next) {
-  res.render('adminlogin', { msg: '', emp: JSON.stringify('') })
+  res.render('adminlogin', { msg: JSON.stringify(''), emp: JSON.stringify('') })
 });
 
 
@@ -263,7 +263,7 @@ router.post("/adminlogin", async function (req, res, next) {
     res.render('adminlogin', { emp: JSON.stringify(rows) || JSON.stringify(''), msg: '' })
   }
   else {
-    res.render('adminlogin', { msg: 'email และ password ผิด', emp: JSON.stringify('') })
+    res.render('adminlogin', { msg: JSON.stringify('email หรือ password ผิด'), emp: JSON.stringify('') })
   }
 });
 
