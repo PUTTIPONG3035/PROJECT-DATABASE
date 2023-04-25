@@ -285,5 +285,18 @@ router.get("/editBooking", async function (req, res, next) {
 
 })
 
+router.post('/report', async function (req, res, next) {
+  // , employee_id , empId,
+  // var cusId = JSON.parse(localStorage.getItem("user"));
+  var id = "RE" + Math.floor(Math.random()*100)
+  console.log(id)
+  console.log(req.body.des)
+  await pool.query('insert into report(report_id, customer_id, employee_id, report_title, report_description) values(?, ?, ?, ?, ?)', [id, req.body.cusId, 10, req.body.title, req.body.des])
+  console.log(req.body.roomNumber)
+  console.log(req.body.title)
+  console.log(req.body.des)
+  res.redirect('/')
+})
+
 
 exports.router = router;

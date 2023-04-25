@@ -55,7 +55,7 @@
                         <div class="nav-inner">
                             <!-- Start Navbar -->
                             <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand" href="/" style="color:white">
+                                <a class="navbar-brand" href="#Home" style="color:white">
                                     <b style="font-size: larger;"> Hotel </b>
                                     <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
                                 </a>
@@ -75,6 +75,10 @@
                                         <li class="nav-item">
                                             <a href="#booking" class="page-scroll"
                                                 aria-label="Toggle navigation">Booking</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#report" class="page-scroll"
+                                                aria-label="Toggle navigation">Report</a>
                                         </li>
                                     </ul>
                                 </div> <!-- navbar collapse -->
@@ -192,6 +196,46 @@
         </section>
 
 
+
+        <!-- report area -->
+        <section id="report" class="pricing-table section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2 class="wow zoomIn" data-wow-delay=".2s">report room</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" v-if="yesbooking == 'check'">
+                    <center>
+                        <div class="col-lg-3 col-md-6 col-12" v-for="booking in bookings" style="color: #333">
+                            <!-- Single Table -->
+                            <form action="/report" method="POST">
+                                <label class="form-label">Room :</label>
+                                <input class="form-control" type="text" name="roomNumber" v-model="room">
+                                <br>
+                                <label class="form-label">Title Report :</label>
+                                <input class="form-control" type="text" name="title" v-model="title">
+                                <br>
+                                <label class="form-label">Report Description : </label>
+                                <textarea class="form-control" name="des" rows="auto" cols="50"
+                                    v-model="des"></textarea>
+                                <br>
+                                by :
+                                <input class="form-control" type="text" name="cusId" :value='bookings[0].customer_id' readonly>
+                                <br>
+                                <a><button class="btn btn-primary" type="submit">confirm report</button></a>
+
+
+                            </form>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </section>
+
+
         <!-- Start Footer Area -->
         <footer class="footer">
             <!-- Start Footer Top -->
@@ -253,7 +297,18 @@
             el: '#profile',
             data: {
                 bookings: JSON.parse('<%- booking %>'),
-                yesbooking: JSON.parse('<%- yesbooking %>')
+                yesbooking: JSON.parse('<%- yesbooking %>'),
+                room: '',
+                title: "",
+                des: '',
+                cusId: ''
+
+            },
+            created() {
+                console.log('เป็นเหี้ยไร')
+                console.log("cusId" + this.bookings[0].customer_id)
+                this.cusId = bookings[0].customer_id
+
             },
             methods: {
                 logOut() {
@@ -265,8 +320,17 @@
                     if (confirm('cancel' + bookingId) == true) {
                         window.location.href = `http://localhost:3000/profile/delete/${bookingId} ${customerId}`
                     }
-                }
-            }
+                },
+                // comfirm() {
+                //     let report = {
+                //         "room" : this.room,
+                //         "title" : this.title,
+                //         "des" : this.des
+                //     }
+                //     localStorage.setItem('report', report)
+                //     window.location.href = 'http://localhost:3000/';
+                // }
+            },
         })
     </script>
 </body>
