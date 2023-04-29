@@ -234,8 +234,10 @@ router.post('/booking/:id', async function (req, res, next) {
 
 //bookingorder
 router.get("/bookingOrder", async function (req, res, next) {
-  const [booking_order, feilds] = await pool.query("select * from booking")
-  const [booking, feilds1] = await pool.query("select * from booking join payments using(payment_id)")
+  const date = new Date().toJSON().split("T");
+  console.log(date)
+  const [booking_order, feilds] = await pool.query("select * from booking order by booking_date desc")
+  const [booking, feilds1] = await pool.query("select * from booking join payments using(payment_id) where check_in >= ? order by booking_date desc", [date[0]])
   console.log(booking_order)
   res.render('booking_order', { booking_order: JSON.stringify(booking) })
 });
