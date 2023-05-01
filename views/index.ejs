@@ -65,7 +65,7 @@
                                     <ul id="nav" class="navbar-nav ms-auto">
                                         <li class="nav-item">
                                             <a href="#home" class="page-scroll active"
-                                                aria-label="Toggle navigation">Home{{this.local}}</a>
+                                                aria-label="Toggle navigation">Home</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#booking" class="page-scroll"
@@ -80,13 +80,14 @@
                                 <div class="button add-list-button" v-if="is_ActiveProfile == true">
                                     <a :href="'/profile/' + local" class="btn">Profile</a>
                                 </div>
+                                <div class="button add-list-button" v-if="is_ActiveAdmin == true">
+                                    <a href="http://localhost:3000/admin" class="btn">AdminHome</a>
+                                </div>
                                 <div class="button add-list-button" v-if="is_ActiveLogout == true">
                                     <!-- <a :href="'http://localhost:3000/profile/' + local" class="btn">Profile {{local}}</a> -->
                                     <a href="http://localhost:3000/" class="btn" @click="logOut()">Log-out</a>
                                 </div>
-                                <div class="button add-list-button" v-if="is_ActiveAdmin == true">
-                                    <a href="http://localhost:3000/admin" class="btn">AdminHome</a>
-                                </div>
+                              
                                 <div class="button add-list-button" v-if="is_AcitveSignUp == true">
                                     <a href="http://localhost:3000/signup" class="btn">Sign-up</a>
                                 </div>

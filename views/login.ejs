@@ -78,7 +78,7 @@
                     <div class="nav-inner">
                         <!-- Start Navbar -->
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html" style="color:#F9F9F9">
+                            <a class="navbar-brand" href="/" style="color:#F9F9F9">
                                 <b style="font-size: larger;"> Hotel </b>
                                 <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
                             </a>
@@ -131,13 +131,23 @@
 
     <!-- /End Preloader -->
     <div class="container">
-        <div class="login" style="margin: 100px; text-align: center;font-size: larger;">
-            <strong> Customer Log-in </strong> <br><br>
+        <div class="login" style="margin: 100px; text-align: center; font-size: larger;">
+            <strong > Customer Log-in </strong> <br><br>
         <form action="/login" method="POST">
-            email : <input type="text" name="email" placeholder="email" /required>
-            <br><br>
-            password : <input type="password" name="password" placeholder="******" /required>
-            <br><br>
+            <div class="form-group row" style="margin-left: 100px; margin-bottom: 10px;">
+                <label for="" class="col-sm-3 col-form-label">email : </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  name="email" placeholder="email" /required>
+                </div>
+            </div>
+           <div class="form-group row" style="margin-left: 100px;">
+            <label for="" class="col-sm-3 col-form-label">   password : </label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" name="password" placeholder="******" /required>
+            </div>
+           </div>
+           
+           <br>
             <div style="background-color: #FFBABA; border-radius: 10px; width: 40%; margin: auto;" v-if="msg != ''" >
                 <h5 style="color: #D8000C; padding: 10px; text-align: center;" >{{msg}}</h5>
             </div>

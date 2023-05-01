@@ -55,7 +55,7 @@
                         <div class="nav-inner">
                             <!-- Start Navbar -->
                             <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand" href="#Home" style="color:white">
+                                <a class="navbar-brand" href="/" style="color:white">
                                     <b style="font-size: larger;"> Hotel </b>
                                     <!-- <img src="assets/images/logo/white-logo.svg" alt="Logo"> -->
                                 </a>
@@ -130,7 +130,7 @@
                         <div class="section-title">
                             <h3 class="wow zoomIn" data-wow-delay=".2s">Our Room</h3>
                             <h2 class="wow fadeInUp" data-wow-delay=".4s">information's room</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">{{yesbooking}}
+                            <p class="wow fadeInUp" data-wow-delay=".6s">
                             </p>
                         </div>
                     </div>
@@ -184,14 +184,15 @@
                             </div>
                             <div class="table-content  text-center">
                                 <hr>
-
-                                <button class="btn btn-danger" @click="cancel(booking.booking_id, booking.customer_id)">
-                                    cancel </button>
+                                
+                                <button class="btn btn-danger" @click="cancel(booking.booking_id, booking.customer_id, booking.payment_id)" v-if="booking.payment_state === 'incomplete'">cancel </button>
+                                <button class="btn btn-grey-lighter"  v-if="booking.payment_state === 'complete'">Not cancel </button>
 
                             </div>
                         </div>
                     </div>
                 </div>
+                <div v-else class="text-center"> ไม่มีข้อมูลการจอง</div>
             </div>
         </section>
 
@@ -305,9 +306,9 @@
 
             },
             created() {
-                console.log('เป็นเหี้ยไร')
+                // console.log('เป็นเหี้ยไร')
                 console.log("cusId" + this.bookings[0].customer_id)
-                this.cusId = bookings[0].customer_id
+                // this.cusId = bookings[0].customer_id
 
             },
             methods: {
@@ -316,9 +317,10 @@
                     window.location.href = 'http://localhost:3000/';
 
                 },
-                cancel(bookingId, customerId) {
+                cancel(bookingId, customerId, paymentId) {
+                    
                     if (confirm('cancel' + bookingId) == true) {
-                        window.location.href = `http://localhost:3000/profile/delete/${bookingId} ${customerId}`
+                        window.location.href = `http://localhost:3000/profile/delete/${bookingId} ${customerId} ${paymentId}`
                     }
                 },
                 // comfirm() {

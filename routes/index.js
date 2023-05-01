@@ -167,7 +167,7 @@ router.get("/admin", async function (req, res, next) {
 //profile
 router.get("/profile/:id", async function (req, res, next) {
   console.log(req.params.id)
-  const [booking, feilds] = await pool.query('SELECT * FROM booking join room using(room_id) join customers c using(customer_id) join payments using(payment_id) WHERE c.customer_id = ?', [req.params.id])
+  const [booking, feilds] = await pool.query('SELECT * FROM booking join room using(room_id) join customers c using(customer_id) join payments using(payment_id) WHERE c.customer_id = ? order by booking_date desc', [req.params.id])
   console.log(booking)
   if(booking == ''){
     const [yesbooking, feild1] = await pool.query('SELECT customer_id FROM booking WHERE ? in (customer_id)', [booking.customer_id])
@@ -192,7 +192,7 @@ router.get("/booking/:id", async function (req, res, next) {
 });
 
 router.post('/booking/:id', async function (req, res, next) {
-  console.log(req.params.id.split(' ')[1])
+  // console.log(req.params.id.split(' ')[1])
   const roomId = req.params.id.split(' ')[1]
   const{checkIn, checkOut, fname} = req.body
   const [rooms, feilds] = await pool.query("select * from room where room_id = ?", [roomId])
@@ -270,16 +270,44 @@ router.post("/adminlogin", async function (req, res, next) {
 });
 
 router.get("/profile/delete/:bookingId", async function (req, res, next){
-  console.log(req.params.bookingId.split(' ')[0])
+  
 
   // confirm('Press a button')
-  try{
-    const[deleteRoom, feild] = await pool.query('DELETE FROM booking WHERE booking_id = ?', [req.params.bookingId.split(' ')[0]])
-    // res.render('profile', {booking : JSON.stringify(booking), yesbooking : JSON.stringify('check') })
+  // try{
+  //   console.log(req.params.bookingId)
+  //   const[deleteRoom, feild] = await pool.query('DELETE FROM booking WHERE booking_id = ?', [req.params.bookingId.split(' ')[0]])
+  //   // const[deleteCom, feilds] = await pool.query('DELETE FROM payments WHERE payment_id = ?', [req.params.bookingId.split(' ')[2]])
+  //   // res.render('profile', {booking : JSON.stringify(booking), yesbooking : JSON.stringify('check') })
+  //   res.redirect(`/profile/${req.params.bookingId.split(' ')[1]}`)
+  // }catch(err){
+  //   console.log(err)
+  // }
+  const conn = await pool.getConnection()
+  // Begin transaction
+  await conn.beginTransaction();
+  try {
+    console.log(req.params.bookingId)
+    
+    await conn.query(
+         'DELETE FROM booking WHERE booking_id = ?', [req.params.bookingId.split(' ')[0]])
+    // const paymentId = results[0].insertId;
+
+    await conn.query(
+     'DELETE FROM payments WHERE payment_id = ?', [req.params.bookingId.split(' ')[2]])
+
+    await conn.commit()
+    // console.log(conn)
+    // res.send("sucess")
     res.redirect(`/profile/${req.params.bookingId.split(' ')[1]}`)
-  }catch(err){
-    console.log(err)
+
+  } catch (err) {
+    await conn.rollback();
+    next(err);
+  } finally {
+    console.log('finally')
+    conn.release();
   }
+
 })
 
 
