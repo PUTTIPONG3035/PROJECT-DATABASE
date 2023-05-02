@@ -56,14 +56,15 @@
                  <input type="number" v-model="number" class="input" style="width: 230px; margin-top: 10px" name="number" />
              </div>
              <br>
-
+             <p style="color: #D8000C;background-color: #FFBABA; padding: 10px; text-align: center; border-radius: 10px;" v-if="check != ''">{{check}}</p>
+             <br>
              <a> <button class="button has-background-danger is-normal is-rounded" type="submit">Next</button> </a>
          </div>
      </form>
         <div class="column"></div>
         <div class="columns">
 
-            <div :class="{modal: modal, 'is-active':done, 'column' : true}">
+            <div :class="{modal: modal, 'is-active': done, 'column' : true}">
                 <div class="modal-background"></div>
                 <div class="box  modal-content column is-one-quarter">
                     <div class="field">
@@ -86,7 +87,7 @@
                  done : '<%- done %>',
                  checkType : '',
                  number : '',
-                 isActive_Done : false,
+                //  isActive_Done : false,
                 modal : true
            }
 

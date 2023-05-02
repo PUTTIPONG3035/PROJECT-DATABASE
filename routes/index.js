@@ -71,15 +71,18 @@ router.post('/payment/:name', async function (req, res, next) {
   console.log(price)
     // console.log(req.params.name.split(' ').length)
       if(via == null ){
-          res.send('wrong')
+        res.render('payment' , {name : JSON.stringify(req.params.name), check : JSON.stringify('กรอกข้อมูลผิด'), done : null})
       }
       else{
         let status = ''
         const conn = await pool.getConnection()
         // Begin transaction
         await conn.beginTransaction();
-        if(viaprice == '' || viaprice != allprice){
+        if(viaprice == ''){
           status = 'incomplete'
+       }
+       else if(viaprice != allprice){
+        res.render('payment' , {name : JSON.stringify(req.params.name), check : JSON.stringify('กรอกข้อมูลผิด'), done : null})
        }
        else{
         status = 'complete'
@@ -103,7 +106,7 @@ router.post('/payment/:name', async function (req, res, next) {
           await conn.commit()
           // console.log(conn)
           // res.send("sucess")
-          res.render(`payment`, {check : JSON.stringify('success'), name : JSON.stringify(''), done : true})
+          res.render(`payment`, {check : JSON.stringify(''), name : JSON.stringify(''), done : true})
           // res.redirect('/')
 
         } catch (err) {
