@@ -68,12 +68,13 @@ router.post('/payment/:name', async function (req, res, next) {
   const via = req.body.checkType
   const viaprice = req.body.number
   const allprice = req.params.name.split(' ')[6]
-  console.log(price)
+  console.log(via)
     // console.log(req.params.name.split(' ').length)
-      if(via == null ){
+      if(via == undefined ){
         res.render('payment' , {name : JSON.stringify(req.params.name), check : JSON.stringify('กรอกข้อมูลผิด'), done : null})
       }
       else{
+       
         let status = ''
         const conn = await pool.getConnection()
         // Begin transaction
@@ -82,40 +83,46 @@ router.post('/payment/:name', async function (req, res, next) {
           status = 'incomplete'
        }
        else if(viaprice != allprice){
+        // console.log('wrong')
+        status = ''
         res.render('payment' , {name : JSON.stringify(req.params.name), check : JSON.stringify('กรอกข้อมูลผิด'), done : null})
        }
+       
        else{
         status = 'complete'
       }
       console.log(status)
-       let p_id = 'p' + Math.floor(Math.random() * 1000)
-       let b_id = 'B00' + Math.floor(Math.random() * 1000)
-        try {
-          const [time, feilds] = await pool.query(`SELECT NOW() as 'date' `)
-          console.log(time[0].date)
-          await conn.query(
-            "INSERT INTO payments(payment_id, via, payment_state, price, customer_id) VALUES (?, ?, ?, ?, ?)",
-            [p_id,via,  status, price, cusId]
-          )
-          // const paymentId = results[0].insertId;
+      if(status != ''){
 
-          await conn.query(
-            "INSERT INTO booking(booking_id, customer_id, name, room_id, check_in, check_out, price, payment_id, booking_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [b_id, cusId, name, roomId, checkIn, checkOut, allprice, p_id, time[0].date])
-
-          await conn.commit()
-          // console.log(conn)
-          // res.send("sucess")
-          res.render(`payment`, {check : JSON.stringify(''), name : JSON.stringify(''), done : true})
-          // res.redirect('/')
-
-        } catch (err) {
-          await conn.rollback();
-          next(err);
-        } finally {
-          console.log('finally')
-          conn.release();
-        }
+        let p_id = 'p' + Math.floor(Math.random() * 1000)
+        let b_id = 'B00' + Math.floor(Math.random() * 1000)
+         try {
+           const [time, feilds] = await pool.query(`SELECT NOW() as 'date' `)
+           console.log(time[0].date)
+           await conn.query(
+             "INSERT INTO payments(payment_id, via, payment_state, price, customer_id) VALUES (?, ?, ?, ?, ?)",
+             [p_id,via,  status, price, cusId]
+           )
+           // const paymentId = results[0].insertId;
+ 
+           await conn.query(
+             "INSERT INTO booking(booking_id, customer_id, name, room_id, check_in, check_out, price, payment_id, booking_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
+             [b_id, cusId, name, roomId, checkIn, checkOut, allprice, p_id, time[0].date])
+ 
+           await conn.commit()
+           // console.log(conn)
+           // res.send("sucess")
+           res.render(`payment`, {check : JSON.stringify(''), name : JSON.stringify(''), done : true})
+           // res.redirect('/')
+ 
+         } catch (err) {
+           await conn.rollback();
+           next(err);
+         } finally {
+           console.log('finally')
+           conn.release();
+         }
+      }
       }
 })
 
@@ -143,34 +150,26 @@ router.post("/signup", async function (req, res, next) {
 });
 
 //admin
-router.get("/admin", async function (req, res, next) {
+router.get("/admin/:id", async function (req, res, next) {
+  console.log(req.params.id)
   const [reports, feilds2] = await pool.query("select * from report")
+  const [employees, feild1] = await pool.query("select * from employees WHERE emp_id = ?", [req.params.id])
   const [rooms, feilds3] = await pool.query("select * from room")
   const [roomsEdit, feilds4] = await pool.query("select * from room where room_id = 'r001'")
   res.render('admin', {
     reports: JSON.stringify(reports),
     rooms: JSON.stringify(rooms),
-    editRoom: JSON.stringify(roomsEdit) })
+    editRoom: JSON.stringify(roomsEdit),
+    emp : JSON.stringify(employees) })
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 //profile
 router.get("/profile/:id", async function (req, res, next) {
   console.log(req.params.id)
-  const [booking, feilds] = await pool.query('SELECT * FROM booking join room using(room_id) join customers c using(customer_id) join payments using(payment_id) WHERE c.customer_id = ? order by booking_date desc', [req.params.id])
+  const date = new Date().toJSON().split("T");
+  const [booking, feilds] = await pool.query('SELECT * FROM booking join room using(room_id) join customers c using(customer_id) join payments using(payment_id) WHERE c.customer_id = ? and check_out > ? order by booking_date desc', [req.params.id, date[0]])
   console.log(booking)
   if(booking == ''){
     const [yesbooking, feild1] = await pool.query('SELECT customer_id FROM booking WHERE ? in (customer_id)', [booking.customer_id])
@@ -212,7 +211,7 @@ router.post('/booking/:id', async function (req, res, next) {
     const [unavailabel, feild2] = await pool.query("select * from unavailable_room where (date between ? and  ?) and  room_id = ?", [checkIn, checkOut, roomId])
     console.log('vacancy : ' + vacancy.length)
     console.log('unvailabel : ' + unavailabel.length)
-    if(checkIn > checkOut){
+    if(checkIn >= checkOut){
        res.render('booking', {msg : JSON.stringify('กรอกเวลาผิด'), rooms : JSON.stringify(rooms)})
     }
 

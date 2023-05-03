@@ -7,7 +7,7 @@
     <title>Booking Hotel</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg" />
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg" /> -->
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -81,7 +81,7 @@
                                     <a :href="'/profile/' + local" class="btn">Profile</a>
                                 </div>
                                 <div class="button add-list-button" v-if="is_ActiveAdmin == true">
-                                    <a href="http://localhost:3000/admin" class="btn">AdminHome</a>
+                                    <a :href="'/admin/' + local" class="btn">AdminHome</a>
                                 </div>
                                 <div class="button add-list-button" v-if="is_ActiveLogout == true">
                                     <!-- <a :href="'http://localhost:3000/profile/' + local" class="btn">Profile {{local}}</a> -->
@@ -355,6 +355,7 @@
                         this.is_AcitveAdmin = false
                         this.is_AcitveSignUp = false
                         this.is_ActiveLogin = false
+                        this.local =JSON.parse(localStorage.getItem('user'))[0].id
                     }
 
                     else {

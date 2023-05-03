@@ -7,7 +7,7 @@
     <title>Booking Hotel</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" /> -->
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="/css/tiny-slider.css" />
     <link rel="stylesheet" href="/css/glightbox.min.css" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 
@@ -103,7 +106,7 @@
                                             <ul class="sub-menu collapse" id="submenu-1-4">
                                                 <!-- loop report table -->
                                                 <li class="nav-item title" v-for="report in reports">
-                                                    {{ report.report_title }}
+                                                    {{ report.report_title + ' (' + report.customer_id + ')' }} 
                                                     <br>
                                                     <p class="help">{{ report.report_description}}</p>
                                                 </li>
@@ -111,6 +114,11 @@
                                         </li>
                                     </ul>
                                 </div> <!-- navbar collapse -->
+                                <div class="bg-light rounded-pill text-center"
+                                style="padding : 20px; color: rgb(232, 136, 152)">
+                                <i class="fa-solid fa-user"></i>
+                                {{employees[0].first_name + ' ' + employees[0].last_name}}
+                            </div>
                                 <div class="button add-list-button">
                                     <a @click="logOut()" class="btn">Log-out</a>
                                 </div>
@@ -262,6 +270,7 @@
                 editRoom: JSON.parse('<%- editRoom %>'),
                 reports: JSON.parse('<%- reports %>'),
                 allroom: JSON.parse('<%- rooms %>'),
+                employees : JSON.parse('<%- emp %>'),
                 roomId: '',
             },
 

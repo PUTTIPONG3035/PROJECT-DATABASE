@@ -7,7 +7,7 @@
     <title>Booking Hotel</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg" />
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg" /> -->
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -106,8 +106,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-5 col-md-12 col-12">
                         <div class="hero-content">
-                            <h1 class="wow fadeInLeft" data-wow-delay=".4s">Welcome</h1>
-                            <p class="wow fadeInLeft" data-wow-delay=".6s">
+                            <h1 class="wow fadeInLeft" data-wow-delay=".4s">Welcome {{bookings[0].first_name}}</h1>
+                            <p class="wow fadeInLeft" data-wow-delay=".6s"> Enjoy Your stay
                             </p>
                         </div>
                     </div>
@@ -210,7 +210,7 @@
                 </div>
                 <div class="row" v-if="yesbooking == 'check'">
                     <!-- <center> -->
-                        <div class="col-lg-3 col-md-6 col-12" v-for="booking in bookings" style="color: #333">
+                        <!-- <div class="col-lg-3 col-md-6 col-12" v-for="booking in bookings" style="color: #333"> -->
                             <!-- Single Table -->
                             <form action="/report" method="POST">
                                 <label class="form-label">Room :</label>

@@ -7,7 +7,7 @@
     <title>Booking Hotel</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg" />
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.svg" /> -->
 
     <!-- ========================= CSS here ========================= -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -151,7 +151,7 @@
                     <h5 style="color: #D8000C; padding: 10px; text-align: center;" >{{msg}}</h5>
                 </div>
                 <br>
-                <a><button type="submit">login</button></a>
+                <button><a type="submit" style="color: black">login</a></button>
             </form>
         </div>
 
@@ -197,7 +197,7 @@
                 console.log(this.emp)
                 if(this.emp != ''){
                     localStorage.setItem('user', JSON.stringify([{email : this.emp[0].email, password: this.emp[0].password, id : this.emp[0].emp_id}]))
-                    window.location.href = 'http://localhost:3000/admin';
+                    window.location.href = 'http://localhost:3000/';
                     alert('ล็อคอิน สำเร็จ')
                     console.log('folk')
                 }
